@@ -20,8 +20,6 @@
 
 @implementation MyCell
 
-// button title 计数器
-static int hour = 6;
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
@@ -50,9 +48,7 @@ static int hour = 6;
     // 单例
     ScheduleHelper *scheduleHelper = [ScheduleHelper sharedDatamanager];
     
-    if ([[_schedule isClock] boolValue] == YES) {
-        
-    }
+    
     
     
     // 把schedule模型保存进数据库
@@ -246,7 +242,7 @@ static int hour = 6;
     }
     
 
-    
+    // 设置闹钟
     if ([schedule.isClock isEqualToNumber:num]) {
 
         self.clockSwitch.on = YES;
@@ -267,11 +263,11 @@ static int hour = 6;
 
 - (void)awakeFromNib {
 
-    //设置时间
-    if (hour < 24) {
-        [self.leftButton setTitle:[NSString stringWithFormat:@"%d",hour += 2] forState:UIControlStateNormal];
-    }
-    
+//    //设置时间
+//    if (hour < 24) {
+//        [self.leftButton setTitle:[NSString stringWithFormat:@"%d",hour += 2] forState:UIControlStateNormal];
+//    }
+//    
     
     
     

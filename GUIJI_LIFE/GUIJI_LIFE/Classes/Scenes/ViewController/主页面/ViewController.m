@@ -11,13 +11,18 @@
 #import "UIView+Genie.h"
 #import <QuartzCore/QuartzCore.h>
 #import "TripViewController.h"
-
+#import "ADCircularMenuViewController.h"
+// 未来几天日程
+#import "ScheduleController.h"
 
 #define KscreenHeight [UIScreen mainScreen].bounds.size.height
 
 typedef void (^block) (void);
 
-@interface ViewController () <UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
+@interface ViewController () <UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,ADCircularMenuDelegate>
+{
+    ADCircularMenuViewController *circularMenuVC;
+}
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
@@ -71,6 +76,8 @@ typedef void (^block) (void);
 
 // 日期存放
 @property(nonatomic,strong)NSMutableArray *dateAllArray;
+
+
 
 
 @end
@@ -134,6 +141,7 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     self.tableView.dataSource = self;
     
 
+    // 设置代理
     self.boundingBox.delegate = self;
     self.boundingBox.dataSource = self;
     
@@ -164,6 +172,41 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     
     
 }
+
+// 右下角button
+- (IBAction)rightButtonAction:(UIButton *)sender {
+    
+    circularMenuVC = nil;
+    
+    //use 3 or 7 or 12 for symmetric look (current implementation supports max 12 buttons)
+    NSArray *arrImageName = [[NSArray alloc] initWithObjects:@"btnMenu",
+                             @"btnMenu",
+                             @"btnMenu",
+                             @"btnMenu",
+                             @"btnMenu",
+                             @"btnMenu",
+                             @"btnMenu", nil];
+    
+    circularMenuVC = [[ADCircularMenuViewController alloc] initWithMenuButtonImageNameArray:arrImageName andCornerButtonImageName:@"btnMenuCorner"];
+    
+    circularMenuVC.delegateCircularMenu = self;
+    [circularMenuVC show];
+
+    
+}
+
+#pragma mark - 菜单选项点击的事件
+- (void)circularMenuClickedButtonAtIndex:(int) buttonIndex
+{
+    ScheduleController *scheduleVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"scheduleController"];
+    
+    [self showDetailViewController:scheduleVC sender:nil];
+    
+    
+    
+}
+
+
 
 
 #pragma mark -- 旋转
@@ -338,6 +381,7 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     cell.num = indexPath.row;
     
     cell.leftButton.titleLabel.text = [NSString stringWithFormat:@"%ld",cell.num + 6];
+        
     cell.schedule = schedule;
 
     
@@ -428,7 +472,7 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
         [cell genieToRect:cell.leftButton.frame edge:BCRectEdgeRight];
     }
 
-    cell.namelabel.text = @"ttttttttttt";
+
     }
     
 }
