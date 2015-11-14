@@ -1,0 +1,33 @@
+//
+//  GUIJI_PrefixHeader.pch
+//  GUIJI_LIFE
+//
+//  Created by lanou3g on 15/11/9.
+//  Copyright © 2015年 周屹. All rights reserved.
+//
+
+#ifndef GUIJI_PrefixHeader_pch
+#define GUIJI_PrefixHeader_pch
+
+// ---- 这里的类是公用类
+
+//引入Model类
+#import "MapInfo.h"
+#import "Schedule.h"
+
+//TrailVC界面引入的类
+#import "TrailHelper.h"
+
+#import "ScheduleHelper.h"
+
+//引入VC类
+#import "TrailViewController.h"
+
+#import "AppDelegate.h"
+
+
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* GUIJI_PrefixHeader_pch */
