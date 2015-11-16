@@ -13,8 +13,23 @@
 @interface ClockHelper : NSObject
 
 
--(void)addLocalNotificationWithTime:(NSString *)time
+//所有通知
+@property(nonatomic,strong) NSArray *notificationArray;
+
+
+#pragma mark 单例方法
++(instancetype)sharedClockHelper;
+
+
+#pragma mark 添加本地通知
+-(UILocalNotification *)addLocalNotificationWithTime:(NSString *)time
                             content:(NSString *)content;
 
+
+#pragma mark 生成当天的某个具体时间点
+- (NSDate *)getCustomDateWithHour:(NSInteger)hour;
+
+#pragma mark 根据time移除本地通知
+-(void)removeNotificationWithTime:(NSString *)time;
 
 @end

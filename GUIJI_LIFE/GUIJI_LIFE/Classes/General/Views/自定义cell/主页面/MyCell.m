@@ -60,12 +60,15 @@
     [scheduleHelper.appDelegate.managedObjectContext save:nil];
     
     
-    //关于闹钟
+    
+    //关于闹钟---开启闹钟通知
     if ([_schedule.isClock boolValue] == YES) {
         //写一个通知
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"clock" object:nil userInfo:@{@"time":@"10"}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"clock" object:nil userInfo:@{@"time":@"9"}];
+    }else{
+        //否则，关闭闹钟通知
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"notClock" object:nil userInfo:@{@"time":@"18"}];
     }
-    
     
 }
 

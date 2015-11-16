@@ -8,21 +8,37 @@
 
 #import "ClockHelper.h"
 
+@interface ClockHelper ()
+
+//存储闹钟数组
+@property(nonatomic,strong) NSMutableArray *mutableArray;
+
+@end
+
 @implementation ClockHelper
 
+#pragma mark 单例方法
++(instancetype)sharedClockHelper{
+    static ClockHelper *clockHelper = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        clockHelper = [ClockHelper new];
+    });
+    return clockHelper;
+}
 
 #pragma mark - 私有方法
 #pragma mark 添加本地通知
-- (void)addLocalNotificationWithTime:(NSString *)time
+- (UILocalNotification *)addLocalNotificationWithTime:(NSString *)time
                              content:(NSString *)content
 {
+    //初始化数组
+    self.mutableArray = [NSMutableArray array];
     
     //定义本地通知对象
     UILocalNotification *notification=[[UILocalNotification alloc]init];
     
-    
     NSDate *currentDate  = [self getCustomDateWithHour:[time integerValue]];
-    
     
     //设置调用时间
     notification.fireDate=currentDate;//通知触发的时间，10s以后
@@ -40,9 +56,13 @@
     
     //设置用户信息
     notification.userInfo=@{@"id":@1,@"user":@"hhhhhhhhh"};//绑定到通知上的其他附加信息
+    
+    
+    //存入数组中
+    [self.mutableArray addObject:notification];
 
-    //调用通知
-    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    return notification;
+    
     
 }
 
@@ -65,7 +85,7 @@
     [resultComps setMonth:[currentComps month]];
     [resultComps setDay:[currentComps day]];
     [resultComps setHour:hour];
-    [resultComps setMinute:29];
+    [resultComps setMinute:10];
     [resultComps setSecond:00];
     
     NSCalendar *resultCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
@@ -80,6 +100,11 @@
 }
 
 
+
+#pragma mark 返回所有通知
+-(NSArray *)notificationArray{
+    return [self.mutableArray copy];
+}
 
 
 @end

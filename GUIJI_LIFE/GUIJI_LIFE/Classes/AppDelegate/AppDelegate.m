@@ -87,7 +87,7 @@
         //接收通知
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startClock:) name:@"clock" object:nil];
         
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopClock:) name:@"notClock" object:nil];
     }else{
         [[UIApplication sharedApplication]registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound  categories:nil]];
     }
@@ -105,6 +105,20 @@
     ClockHelper *clockHelper = [ClockHelper new];
     
     [clockHelper addLocalNotificationWithTime:time content:@"哈哈哈哈哈"];
+}
+
+#pragma mark 处理从MyCell通知中心接收到的通知--关闭闹钟
+-(void)stopClock:(NSNotification *)sender{
+    NSString *time = sender.userInfo[@"time"];
+    //遍历闹钟数组
+    for (UILocalNotification *localNotification in [ClockHelper sharedClockHelper].notificationArray) {
+        NSDate *currentDate  = [[ClockHelper sharedClockHelper] getCustomDateWithHour:[time integerValue]];
+        if ([localNotification.fireDate isEqualToDate:currentDate]) {
+            //取消这个通知
+            [[UIApplication sharedApplication] cancelLocalNotification:localNotification];
+        }
+    }
+    
 }
 
 
