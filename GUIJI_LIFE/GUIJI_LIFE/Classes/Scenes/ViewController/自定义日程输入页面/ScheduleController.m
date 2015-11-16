@@ -114,16 +114,36 @@ static NSString *const cellID = @"cell_ID";
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 80)];
+    
+    headerView.backgroundColor = [UIColor clearColor];
     
     
-        UILabel *titleLabel = [[UILabel alloc] init];
-        titleLabel.frame = CGRectMake(5, 0, 200, 80);
-        titleLabel.textColor = [UIColor purpleColor];
-        titleLabel.text = @"为你的行程填上一笔";
-        titleLabel.textAlignment = NSTextAlignmentCenter;
-        return titleLabel;
     
     
+    UILabel *titleLabel = [[UILabel alloc] init];
+    titleLabel.frame = CGRectMake(80, 0, 200, 80);
+    titleLabel.textColor = [UIColor purpleColor];
+    titleLabel.text = @"为你的行程填上一笔";
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    [headerView addSubview:titleLabel];
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.frame = CGRectMake(10, 30, 40, 30);
+    [button setTitle:@"返回" forState:UIControlStateNormal];
+    [button setTintColor:[UIColor orangeColor]];
+    [button addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside];
+
+    [headerView addSubview:button];
+    
+    return headerView;
+    
+    
+}
+
+- (void)backAction:(UIButton *)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
