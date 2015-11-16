@@ -17,6 +17,9 @@
 //取数据--返回所有的MapInfo数据
 @property(nonatomic,strong) NSArray *allMapInfo;
 
+#pragma mark 单例方法
++(instancetype)sharedTrailHelper;
+
 #pragma mark 存数据 
 -(void)saveMapInfoWithTime:(NSString *)time date:(NSString *)date andLocationName:(NSString *)locationName;
 

@@ -35,7 +35,7 @@
     if ([[UIDevice currentDevice].systemVersion floatValue] > 8.0) {
         
         //设置授权方式
-        [self.locationManager requestWhenInUseAuthorization];
+        [self.locationManager requestAlwaysAuthorization];
         
         //用户是否允许位置访问
         [CLLocationManager locationServicesEnabled];

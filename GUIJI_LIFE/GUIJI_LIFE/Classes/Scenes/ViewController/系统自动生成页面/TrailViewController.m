@@ -9,7 +9,6 @@
 #import "TrailViewController.h"
 #import "Trail_UpCell.h"
 #import "Trail_DownCell.h"
-#import "TestViewController.h"
 @interface TrailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 // UITableView 的实例
@@ -74,25 +73,43 @@ static NSString *downCellID = @"cellDown_Identifier";
 #pragma mark 加载跟规定的时间点相同的MapInfo数据
 -(void)loadData{
     
-    TrailHelper *trailHelper = [[TrailHelper alloc]init];
+    TrailHelper *trailHelper = [TrailHelper sharedTrailHelper];
     
     //得到指定的日期
     NSString *specifiedDate = self.date;
     
-    //得到同一天的用户轨迹相关信息
+    //从数据库中得到同一天的用户轨迹相关信息
     NSArray *allMapInfo = [trailHelper filterMapInfoDataByDate:specifiedDate];
     
     //得到数据
     self.arrayMapInfo = [NSMutableArray arrayWithArray:allMapInfo];
     
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    
     //去掉数据中时间重复的数据
     for (int count = 0; count < self.arrayMapInfo.count; count ++) {
-        for (int next = count+1; next < self.arrayMapInfo.count;) {
+        for (int next = count+1; next < self.arrayMapInfo.count ; ) {
             if ([[self.arrayMapInfo[count] time] isEqualToString:[self.arrayMapInfo[next] time]]) {
+                
+                //从数据中删除
+                [appDelegate.managedObjectContext deleteObject:self.arrayMapInfo[next]];
+                [appDelegate saveContext];
+                
                 [self.arrayMapInfo removeObjectAtIndex:next];
+                
             }else{
-                next ++;
-                break;
+                //如果时间不同,但是地名信息是NULL，也舍弃。
+                if ([self.arrayMapInfo[next] locationName] == NULL) {
+                    
+                    //从数据中删除
+                    [appDelegate.managedObjectContext deleteObject:self.arrayMapInfo[next]];
+                    [appDelegate saveContext];
+                    //之前在这里数组越界，是因为自己之前的代码，如果是最后一个元素，先在数组中移除了next,后来又要取next,但是next已经被删除了，是找不到对应的，所以报错。
+                    [self.arrayMapInfo removeObjectAtIndex:next];
+                }
+                else{
+                    next ++;
+                }
             }
         }
     }
@@ -122,14 +139,6 @@ static NSString *downCellID = @"cellDown_Identifier";
     
     [headerView addSubview:backButton];
     
-    UIButton *testButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [testButton setTitle:@"测试" forState:UIControlStateNormal];
-    
-    testButton.frame = CGRectMake(backButton.frame.origin.x, backButton.frame.origin.y+ backButton.frame.size.height, 50, 50);
-    [testButton addTarget:self action:@selector(testAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [headerView addSubview:testButton];
-    
     return headerView;
 }
 
@@ -138,22 +147,6 @@ static NSString *downCellID = @"cellDown_Identifier";
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark 测试按钮事件
--(void)testAction:(UIButton *)sender{
-    TestViewController *testVC = [[UIStoryboard storyboardWithName:@"Trail" bundle:nil]instantiateViewControllerWithIdentifier:@"TestVCID"];
-    
-    testVC.view.backgroundColor = [UIColor whiteColor];
-    
-    NSMutableString *message = [NSMutableString new];
-    for (MapInfo *mapInfo in self.arrayMapInfo) {
-        
-        [message appendFormat:@"%@",mapInfo.locationName];
-        
-    }
-     testVC.testLabel.text = message;
-    
-    [self presentViewController:testVC animated:YES completion:nil];
-}
 
 #pragma mark - 设置cell 的行数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

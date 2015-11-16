@@ -19,6 +19,18 @@
 
 @implementation TrailHelper
 
+
+#pragma mark 单例方法
++(instancetype)sharedTrailHelper{
+    static TrailHelper *trailHepler = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        trailHepler = [TrailHelper new];
+    });
+    return trailHepler;
+}
+
+
 #pragma mark 存数据
 -(void)saveMapInfoWithTime:(NSString *)time date:(NSString *)date andLocationName:(NSString *)locationName{
     

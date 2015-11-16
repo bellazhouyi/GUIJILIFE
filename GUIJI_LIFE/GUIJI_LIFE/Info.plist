@@ -24,8 +24,8 @@
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Yes</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>确定吗？</string>
+	<key>UIApplicationExitsOnSuspend - 2</key>
+	<false/>
 	<key>UIApplicationExitsOnSuspend</key>
 	<false/>
 	<key>UIBackgroundModes</key>
