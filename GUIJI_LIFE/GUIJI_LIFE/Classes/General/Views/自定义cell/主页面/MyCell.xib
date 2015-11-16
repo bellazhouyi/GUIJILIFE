@@ -38,6 +38,7 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kql-jX-SZA">
                         <rect key="frame" x="10" y="10" width="75" height="155"/>
                         <animations/>
+                        <color key="tintColor" red="0.85490196080000003" green="0.32113399780000002" blue="0.3919888279" alpha="1" colorSpace="calibratedRGB"/>
                         <state key="normal" title="Button"/>
                         <connections>
                             <action selector="leftButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="q2i-cs-XXG"/>

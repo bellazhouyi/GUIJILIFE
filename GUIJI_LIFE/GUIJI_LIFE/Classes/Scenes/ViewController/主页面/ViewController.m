@@ -223,9 +223,10 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     // 获取点击的日期 跳转至当天日程页面
     scheduleVC.date = _dateArray[buttonIndex];
     
-    [self showDetailViewController:scheduleVC sender:nil];
+   // scheduleVC.modalTransitionStyle = UIModalTransitionStylePartialCurl;
+    scheduleVC.modalTransitionStyle = UIModalPresentationPageSheet;
     
-    
+    [self presentViewController:scheduleVC animated:YES completion:nil];
     
 }
 
@@ -320,21 +321,12 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
                     
                 }];
             }];
-            
-        
-        
-        
-        
+
     }
 
     self.viewIsIn = ! self.viewIsIn;
     
 }
-
-
-
-
-
 
 
 #pragma mark -- 毛玻璃消失
@@ -372,8 +364,6 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
         
     [scheduleHelper requestWithDate:self.date];
     
-        NSLog(@"========%@",scheduleHelper.scheduleArray);
-        
         NSLog(@"-------%ld",scheduleHelper.scheduleArray.count);
     return  scheduleHelper.scheduleArray.count;
     }
@@ -411,9 +401,9 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     
     cell.num = indexPath.row;
     
-    cell.date = self.date;
+    [cell.leftButton setTitle:[NSString stringWithFormat:@"%@点",scheduleHelper.buttonTitleArray[indexPath.row]] forState:UIControlStateNormal];
         
-    cell.leftButton.titleLabel.text = [NSString stringWithFormat:@"%ld",cell.num + 6];
+    cell.date = self.date;
         
     cell.schedule = schedule;
 
@@ -451,10 +441,10 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     }else{
     
     UILabel *titleLabel = [[UILabel alloc] init];
-    titleLabel.frame = CGRectMake(5, 0, 200, 80);
-    titleLabel.textColor = [UIColor purpleColor];
-    titleLabel.text = @"为你的行程填上一笔";
+    titleLabel.frame = CGRectMake(160, 0,self.view.frame.size.width - 60, 80);
+    titleLabel.textColor = [UIColor orangeColor];
     titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.text =[NSString stringWithFormat:@"为你%@日的行程添上一笔",self.date];
     return titleLabel;
     }
     

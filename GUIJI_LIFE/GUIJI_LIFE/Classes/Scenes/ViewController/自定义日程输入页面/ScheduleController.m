@@ -31,7 +31,11 @@ static NSString *const cellID = @"cell_ID";
     self.tableView.backgroundView = imageView;
     
     
+    
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"MyCell" bundle:nil] forCellReuseIdentifier:cellID];
+    
+    
 }
 
 
@@ -72,6 +76,8 @@ static NSString *const cellID = @"cell_ID";
     Schedule *schedule = scheduleHelper.scheduleArray[indexPath.row];
     
     cell.num = indexPath.row;
+    
+    [cell.leftButton setTitle:[NSString stringWithFormat:@"%@点",scheduleHelper.buttonTitleArray[indexPath.row]] forState:UIControlStateNormal];
     
     // 获取日期
     cell.date = self.date;
@@ -127,9 +133,9 @@ static NSString *const cellID = @"cell_ID";
     
     
     UILabel *titleLabel = [[UILabel alloc] init];
-    titleLabel.frame = CGRectMake(80, 0, 200, 80);
+    titleLabel.frame = CGRectMake(80, 0, self.view.frame.size.width - 80, 80);
     titleLabel.textColor = [UIColor purpleColor];
-    titleLabel.text = @"为你的行程填上一笔";
+    titleLabel.text = [NSString stringWithFormat:@"为你%@日的行程添上一笔",self.date];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     [headerView addSubview:titleLabel];
     

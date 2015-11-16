@@ -22,9 +22,27 @@
     static ScheduleHelper *scheduleHelper = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        scheduleHelper = [ScheduleHelper new];
+        scheduleHelper = [[ScheduleHelper alloc] init];
+        
     });
     return scheduleHelper;
+}
+
+- (instancetype)init
+{
+    
+    if (self = [super init]) {
+        
+        _buttonTitleArray = [[NSMutableArray alloc] initWithCapacity:10];
+        
+        for (int i = 6; i < 26; i += 2) {
+            // 初始化数组
+            // 添加时间
+            [_buttonTitleArray addObject:[NSString stringWithFormat:@"%d",i]];
+        }
+   
+    }
+        return self;
 }
 
 
@@ -43,7 +61,6 @@
         
             for (int i = 6;  i < 26; i += 2)
             {
-                
                 
                 if (i == 6)
                 {

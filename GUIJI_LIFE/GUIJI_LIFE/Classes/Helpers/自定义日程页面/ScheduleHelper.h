@@ -12,11 +12,14 @@
 // 从数据库中读取数据的数组
 @property (nonatomic,strong) NSMutableArray *scheduleArray;
 
+// 设置button上显示时间的数组
+@property (nonatomic,strong) NSMutableArray *buttonTitleArray;
 
 @property (nonatomic,strong) AppDelegate *appDelegate;
 
 #pragma mark 存储未来7天的模型
 - (void)saveDataWithDate:(NSString *)date hour:(NSNumber *)hour content:(NSString *)content isClock:(BOOL)isColock isShow:(BOOL)isShow showBox:(BOOL)showBox;
+
 #pragma mark 根据日期去数据
 - (NSMutableArray *)gainDataWithDate:(NSString *)date;
 
