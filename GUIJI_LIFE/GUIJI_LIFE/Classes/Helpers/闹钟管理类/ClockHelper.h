@@ -29,7 +29,5 @@
 #pragma mark 生成当天的某个具体时间点
 - (NSDate *)getCustomDateWithHour:(NSInteger)hour;
 
-#pragma mark 根据time移除本地通知
--(void)removeNotificationWithTime:(NSString *)time;
 
 @end

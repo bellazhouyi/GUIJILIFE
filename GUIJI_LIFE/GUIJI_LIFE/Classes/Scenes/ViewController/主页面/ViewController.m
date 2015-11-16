@@ -380,7 +380,7 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     
     cell.num = indexPath.row;
     
-    cell.leftButton.titleLabel.text = [NSString stringWithFormat:@"%ld",cell.num + 6];
+    cell.leftButton.titleLabel.text = [NSString stringWithFormat:@"%d",cell.num + 6];
         
     cell.schedule = schedule;
 

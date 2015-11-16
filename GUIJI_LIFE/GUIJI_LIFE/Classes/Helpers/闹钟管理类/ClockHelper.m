@@ -94,12 +94,6 @@
 }
 
 
-#pragma mark 移除本地通知，在不需要此通知时记得移除
--(void)removeNotification{
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
-}
-
-
 
 #pragma mark 返回所有通知
 -(NSArray *)notificationArray{

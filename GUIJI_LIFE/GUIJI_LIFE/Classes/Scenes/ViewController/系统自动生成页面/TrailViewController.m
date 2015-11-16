@@ -15,9 +15,8 @@
 // UITableView 的实例
 @property(nonatomic,strong)UITableView *tableView;
 
-
 //用于存储MapInfo的数组
-@property(nonatomic,strong) NSArray *arrayMapInfo;
+@property(nonatomic,strong) NSMutableArray *arrayMapInfo;
 
 
 @end
@@ -72,17 +71,31 @@ static NSString *downCellID = @"cellDown_Identifier";
     
 }
 
-#pragma mark 加载数据
+#pragma mark 加载跟规定的时间点相同的MapInfo数据
 -(void)loadData{
     
     TrailHelper *trailHelper = [[TrailHelper alloc]init];
     
-    //得到所有日期的用户轨迹相关信息
-//    self.arrayMapInfo = trailHelper.allMapInfo;
-#warning 根据家赫那个页面的tableViewCell的点击行数得到对应的时间，传值过来即可，到时候可以写一个属性，便可以实现
+    //得到指定的日期
     NSString *specifiedDate = self.date;
+    
     //得到同一天的用户轨迹相关信息
-    self.arrayMapInfo = [trailHelper filterMapInfoDataByDate:specifiedDate];
+    NSArray *allMapInfo = [trailHelper filterMapInfoDataByDate:specifiedDate];
+    
+    //得到数据
+    self.arrayMapInfo = [NSMutableArray arrayWithArray:allMapInfo];
+    
+    //去掉数据中时间重复的数据
+    for (int count = 0; count < self.arrayMapInfo.count; count ++) {
+        for (int next = count+1; next < self.arrayMapInfo.count;) {
+            if ([[self.arrayMapInfo[count] time] isEqualToString:[self.arrayMapInfo[next] time]]) {
+                [self.arrayMapInfo removeObjectAtIndex:next];
+            }else{
+                next ++;
+                break;
+            }
+        }
+    }
 }
 
 #pragma mark - 禁止屏幕旋转
@@ -164,7 +177,7 @@ static NSString *downCellID = @"cellDown_Identifier";
         //把数据填充到upCell上
         MapInfo *upMapInfo = self.arrayMapInfo[indexPath.row];
         
-        NSString *message = [NSString stringWithFormat:@"%@+%@+%@",upMapInfo.date,upMapInfo.time,upMapInfo.locationName];
+        NSString *message = [NSString stringWithFormat:@"%@ -> %@",upMapInfo.time,upMapInfo.locationName];
         
         upCell.UPLabel.text = message;
        
@@ -184,7 +197,7 @@ static NSString *downCellID = @"cellDown_Identifier";
         MapInfo *downMapInfo = self.arrayMapInfo[indexPath.row];
         
 
-        NSString *message = [NSString stringWithFormat:@"%@+%@",downMapInfo.time,downMapInfo.locationName];
+        NSString *message = [NSString stringWithFormat:@"%@ -> %@",downMapInfo.time,downMapInfo.locationName];
         
         downCell.DownLabel.text = message;
         
@@ -215,15 +228,6 @@ static NSString *downCellID = @"cellDown_Identifier";
     [self loadData];
 }
 
-
-
-#pragma mark 懒加载
--(NSArray *)arrayMapInfo{
-    if (!_arrayMapInfo) {
-        _arrayMapInfo = [NSArray array];
-    }
-    return _arrayMapInfo;
-}
 
 
 

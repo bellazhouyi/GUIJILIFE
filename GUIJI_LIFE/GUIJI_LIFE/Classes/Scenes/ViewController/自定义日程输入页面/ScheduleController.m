@@ -83,9 +83,8 @@ static NSString *const cellID = @"cell_ID";
 {
     // 获取cell
     MyCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    // 如果namelabel 为空 点击无效果
     
-    NSLog(@"----%ld",indexPath.row);
+    // 如果namelabel 为空 点击无效果
     if ([cell.namelabel.text isEqualToString:@""]) {
         return;
     }

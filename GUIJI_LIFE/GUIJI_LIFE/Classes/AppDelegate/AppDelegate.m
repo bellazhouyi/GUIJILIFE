@@ -18,23 +18,12 @@
 @property(nonatomic,strong) CLLocationManager *locationManager;
 
 
-//固定一个时间数组
-@property(nonatomic,strong) NSMutableArray *timeArray;
-
 @end
 
 @implementation AppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-   
-    //初始化时间数组
-    for (int i = 8; i < 24; i++) {
-        NSString *specifiedTime = [NSString stringWithFormat:@"%d:00:00",i];
-        [self.timeArray addObject:specifiedTime];
-    }
-
-    
     
     //定义MKMapView视图
     MKMapView *mapView = [[MKMapView alloc]initWithFrame:[UIScreen mainScreen].bounds];
@@ -97,14 +86,18 @@
     return YES;
 }
 
-#pragma mark 处理从MyCell通知中心接收到的通知
+#pragma mark 处理从MyCell通知中心接收到的通知--开启闹钟
 -(void)startClock:(NSNotification *)sender{
     
     NSString *time = sender.userInfo[@"time"];
+    NSString *content = sender.userInfo[@"content"];
     
-    ClockHelper *clockHelper = [ClockHelper new];
+    ClockHelper *clockHelper = [ClockHelper sharedClockHelper];
     
-    [clockHelper addLocalNotificationWithTime:time content:@"哈哈哈哈哈"];
+    UILocalNotification *notification = [clockHelper addLocalNotificationWithTime:time content:content];
+    
+    //调用通知
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 }
 
 #pragma mark 处理从MyCell通知中心接收到的通知--关闭闹钟
@@ -183,19 +176,14 @@
         NSString *date = [dateFormatter stringFromDate:currentDate];
         
         //得到时间--字符串
-        [dateFormatter setDateFormat:@"HH:mm:ss"];
+        [dateFormatter setDateFormat:@"HH:mm"];
         
         NSString *time = [dateFormatter stringFromDate:currentDate];
         
-        //        //遍历，当前时间跟规定时间吻合后，存入数据库
-        //        for (NSString *itemTime in self.timeArray ) {
-        //
-        //            if ([time isEqualToString:itemTime]) {
         //存入数据库
         TrailHelper *trailHelper = [TrailHelper new];
         [trailHelper saveMapInfoWithTime:time date:date andLocationName:userLocationInfo];
-        //            }
-        //        }
+        
         
         
     }];
