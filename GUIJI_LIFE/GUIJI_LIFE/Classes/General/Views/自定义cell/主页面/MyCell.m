@@ -67,10 +67,10 @@
     //关于闹钟---开启闹钟通知
     if ([_schedule.isClock boolValue] == YES) {
         //写一个通知
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"clock" object:nil userInfo:@{@"time":@"9"}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"clock" object:nil userInfo:@{@"time":_schedule.hour,@"content":_schedule.content}];
     }else{
         //否则，关闭闹钟通知
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"notClock" object:nil userInfo:@{@"time":@"18"}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"notClock" object:nil userInfo:@{@"time":_schedule.hour}];
     }
     
 }
