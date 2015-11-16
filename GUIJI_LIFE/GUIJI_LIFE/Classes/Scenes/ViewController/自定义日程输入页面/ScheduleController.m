@@ -20,27 +20,20 @@ static NSString *const cellID = @"cell_ID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-
+    // 设置
+//    self.automaticallyAdjustsScrollViewInsets = NO;
     
     CGRect rect = [[self view] bounds];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:rect];
     [imageView setImage:[UIImage imageNamed:@"love" ]];
     
-//    [self.view setBackgroundColor:[UIColor clearColor]];   //(1)
-//    self.tableView.opaque = NO; //(2) (1,2)两行不要也行，背景图片也能显示
+
     self.tableView.backgroundView = imageView;
     
-    
-//    [self.tableView registerClass:[NextCell class] forCellReuseIdentifier:cellID];
-//
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MyCell" bundle:nil] forCellReuseIdentifier:cellID];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - Table view data source
 
@@ -51,7 +44,12 @@ static NSString *const cellID = @"cell_ID";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
+    // 通过日期获取数据
     ScheduleHelper *scheduleHelper = [ScheduleHelper sharedDatamanager];
+    
+    // 数据库申请数据
+    [scheduleHelper requestWithDate:self.date];
+    
     return scheduleHelper.scheduleArray.count;
 }
 
@@ -65,11 +63,18 @@ static NSString *const cellID = @"cell_ID";
     
     //cell.addTextField.delegate = self;
     
+    // 通过日期获取数据
     ScheduleHelper *scheduleHelper = [ScheduleHelper sharedDatamanager];
+    
+    // 数据库申请数据
+    [scheduleHelper requestWithDate:self.date];
     
     Schedule *schedule = scheduleHelper.scheduleArray[indexPath.row];
     
     cell.num = indexPath.row;
+    
+    // 获取日期
+    cell.date = self.date;
     
     cell.schedule = schedule;
 
@@ -83,8 +88,9 @@ static NSString *const cellID = @"cell_ID";
 {
     // 获取cell
     MyCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    
     // 如果namelabel 为空 点击无效果
+    
+    NSLog(@"----%ld",indexPath.row);
     if ([cell.namelabel.text isEqualToString:@""]) {
         return;
     }

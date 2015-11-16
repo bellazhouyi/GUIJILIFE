@@ -46,6 +46,9 @@
 // cell的标记
 @property (nonatomic,assign) NSInteger num;
 
+// 获取当前日期
+@property (nonatomic,strong) NSString *date;
+
 
 // setter方法
 - (void)setSchedule:(Schedule *)schedule;

@@ -12,23 +12,17 @@
 // 从数据库中读取数据的数组
 @property (nonatomic,strong) NSMutableArray *scheduleArray;
 
-// 初始化 源数组
-@property (nonatomic,strong) NSMutableArray *dataArray;
-
-// 日程数据模型
-//@property (nonatomic,strong) Schedule *schedule;
 
 @property (nonatomic,strong) AppDelegate *appDelegate;
 
+#pragma mark 存储未来7天的模型
+- (void)saveDataWithDate:(NSString *)date hour:(NSNumber *)hour content:(NSString *)content isClock:(BOOL)isColock isShow:(BOOL)isShow showBox:(BOOL)showBox;
+#pragma mark 根据日期去数据
+- (NSMutableArray *)gainDataWithDate:(NSString *)date;
 
 + (instancetype)sharedDatamanager;
 
-#pragma mark 初始化原数组
-- (instancetype)init;
-
-
-#pragma mark 保存数据
-- (void)saveDataWithHour:(NSNumber *)hour content:(NSString *)content isClock:(BOOL)isColock isShow:(BOOL)isShow showBox:(BOOL)showBox;
-
+// 从数据库申请数据
+- (void)requestWithDate:(NSString *)date;
 
 @end

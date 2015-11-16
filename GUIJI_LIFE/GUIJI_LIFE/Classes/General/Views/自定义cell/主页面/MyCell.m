@@ -27,6 +27,9 @@
     
 
         
+    
+        
+        
     }
     return self;
 }
@@ -47,10 +50,10 @@
     
     // 单例
     ScheduleHelper *scheduleHelper = [ScheduleHelper sharedDatamanager];
+    // 获取日期
+    [scheduleHelper requestWithDate:self.date];
     
-    
-    
-    
+
     // 把schedule模型保存进数据库
     _schedule =  scheduleHelper.scheduleArray[self.num] ;
     
@@ -77,6 +80,9 @@
 - (IBAction)addDownAction:(UIButton *)sender {
     
     ScheduleHelper *s = [ScheduleHelper sharedDatamanager];
+    
+    // 申请数据
+    [s requestWithDate:self.date];
     
     _schedule = s.scheduleArray[self.num];
 
@@ -139,6 +145,9 @@
 {
     // 单例
     ScheduleHelper *s = [ScheduleHelper sharedDatamanager];
+
+    // 数据库申请数据
+    [s requestWithDate:self.date];
     
     // 获取 cell的 索引
     _schedule = s.scheduleArray[self.num];
@@ -266,11 +275,6 @@
 
 - (void)awakeFromNib {
 
-//    //设置时间
-//    if (hour < 24) {
-//        [self.leftButton setTitle:[NSString stringWithFormat:@"%d",hour += 2] forState:UIControlStateNormal];
-//    }
-//    
     
     
     

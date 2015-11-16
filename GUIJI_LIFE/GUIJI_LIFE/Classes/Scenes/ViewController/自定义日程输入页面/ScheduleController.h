@@ -10,4 +10,8 @@
 
 @interface ScheduleController : UITableViewController
 
+// 获取日期
+@property (nonatomic,strong) NSString *date;
+
+
 @end

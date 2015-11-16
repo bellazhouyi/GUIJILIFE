@@ -68,8 +68,8 @@ typedef void (^block) (void);
 // 第一次指示气泡(判断是否是第一次)
 @property (nonatomic,assign) BOOL first;
 
-// 所有日程数据数组
-@property (nonatomic,strong) NSMutableArray *dataArray;
+// 所有完整形式日程数据数组
+@property (nonatomic,strong) NSMutableArray *dateArray;
 
 // 数据管理者
 @property (nonatomic,strong) ScheduleHelper *scheduleHelper;
@@ -77,8 +77,8 @@ typedef void (^block) (void);
 // 日期存放
 @property(nonatomic,strong)NSMutableArray *dateAllArray;
 
-
-
+// 日期
+@property (nonatomic,strong ) NSString *date;
 
 @end
 
@@ -102,7 +102,12 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     
     comps = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:date];
     
+    // 获取当天日期
+    self.date = [formatter stringFromDate:date];
     
+    NSLog(@"~~~~~%@",self.date);
+    
+    // 过去7天获取日期
     for (int i = 0; i < 7; i++)
     {
         
@@ -117,6 +122,21 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
         [self.dateAllArray addObject:stringDate];
         
     }
+    
+    // 获取未来7天的日期
+    for (int i = 0; i < 7; i++) {
+        
+        NSDateComponents *adcomps = [[NSDateComponents alloc] init];
+        
+        [adcomps setDay:i + 1];
+        
+        NSDate *newdate=[calendar dateByAddingComponents:adcomps toDate:date options:0];
+        NSString *stringDate=[formatter stringFromDate:newdate];
+
+        [self.dateArray addObject:stringDate];
+        
+    }
+    
     // box隐藏
     self.buttons = @[_TopButton];
     self.boundingBox.hidden = YES;
@@ -199,6 +219,9 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
 - (void)circularMenuClickedButtonAtIndex:(int) buttonIndex
 {
     ScheduleController *scheduleVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"scheduleController"];
+    
+    // 获取点击的日期 跳转至当天日程页面
+    scheduleVC.date = _dateArray[buttonIndex];
     
     [self showDetailViewController:scheduleVC sender:nil];
     
@@ -346,6 +369,12 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     }else{
     
     ScheduleHelper *scheduleHelper = [ScheduleHelper sharedDatamanager];
+        
+    [scheduleHelper requestWithDate:self.date];
+    
+        NSLog(@"========%@",scheduleHelper.scheduleArray);
+        
+        NSLog(@"-------%ld",scheduleHelper.scheduleArray.count);
     return  scheduleHelper.scheduleArray.count;
     }
 }
@@ -376,11 +405,15 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     
     ScheduleHelper *scheduleHelper = [ScheduleHelper sharedDatamanager];
     
+    [scheduleHelper requestWithDate:self.date];
+        
     Schedule *schedule = scheduleHelper.scheduleArray[indexPath.row];
     
     cell.num = indexPath.row;
     
-    cell.leftButton.titleLabel.text = [NSString stringWithFormat:@"%d",cell.num + 6];
+    cell.date = self.date;
+        
+    cell.leftButton.titleLabel.text = [NSString stringWithFormat:@"%ld",cell.num + 6];
         
     cell.schedule = schedule;
 
@@ -479,12 +512,12 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
 
 
 #pragma mark - 懒加载
-- (NSMutableArray *)dataArray
+- (NSMutableArray *)dateArray
 {
-    if (!_dataArray) {
-        _dataArray = [NSMutableArray array];
+    if (!_dateArray) {
+        _dateArray = [NSMutableArray array];
     }
-    return _dataArray;
+    return _dateArray;
 }
 
 
