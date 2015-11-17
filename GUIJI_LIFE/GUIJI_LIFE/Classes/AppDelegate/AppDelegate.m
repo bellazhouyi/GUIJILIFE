@@ -47,6 +47,12 @@
         mapView.mapType = MKMapTypeStandard;
     }
     
+    //iOS9新特性
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] > 9.0) {
+        //允许后台更新
+        _locationManager.allowsBackgroundLocationUpdates = YES;
+    }
+    
     
     //打开地图的总开关
     mapView.showsUserLocation = YES;
@@ -64,7 +70,8 @@
     //设置更新间距
     self.locationManager.distanceFilter = 1;
     
-    
+    //设置定位精度
+    [_locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
     
 #pragma mark - 关于闹钟的
     //如果已经获得发送通知的授权则创建本地通知，否则请求授权(注意：如果不请求授权在设置中是没有对应的通知设置项的，也就是说如果从来没有发送过请求，即使通过设置也打不开消息允许设置)
@@ -89,7 +96,7 @@
 #pragma mark 处理从MyCell通知中心接收到的通知--开启闹钟
 -(void)startClock:(NSNotification *)sender{
     
-    NSString *time = sender.userInfo[@"time"];
+    NSString *time = [NSString stringWithFormat:@"%@",sender.userInfo[@"time"]];
     NSString *content = sender.userInfo[@"content"];
     
     ClockHelper *clockHelper = [ClockHelper sharedClockHelper];
@@ -102,7 +109,7 @@
 
 #pragma mark 处理从MyCell通知中心接收到的通知--关闭闹钟
 -(void)stopClock:(NSNotification *)sender{
-    NSString *time = sender.userInfo[@"time"];
+    NSString *time = [NSString stringWithFormat:@"%@",sender.userInfo[@"time"]];
     //遍历闹钟数组
     for (UILocalNotification *localNotification in [ClockHelper sharedClockHelper].notificationArray) {
         NSDate *currentDate  = [[ClockHelper sharedClockHelper] getCustomDateWithHour:[time integerValue]];
@@ -139,14 +146,6 @@
             [[UIApplication sharedApplication] endBackgroundTask:bgTask];
             
         }];
-        
-        
-        if (bgTask != UIBackgroundTaskInvalid) {
-            [[UIApplication sharedApplication] endBackgroundTask:bgTask];
-            bgTask = UIBackgroundTaskInvalid;
-        }
-        
-        
         
     }
     
