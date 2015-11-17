@@ -16,7 +16,7 @@
     // 创建imageView
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:self.label.bounds];
     // 给imageView 添加图片
-    [imageView setImage:[UIImage imageNamed:@""]];
+    [imageView setImage:[UIImage imageNamed:@"5"]];
     // 将imageView 添加到DownLabel上
     [self.label addSubview:imageView];
     // 将imageView 交互开启

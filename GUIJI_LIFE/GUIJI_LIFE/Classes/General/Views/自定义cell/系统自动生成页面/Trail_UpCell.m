@@ -16,7 +16,7 @@
     // 创建imageView
     UIImageView *imageView = [[UIImageView alloc]initWithFrame:self.UPLabel.bounds];
     // 给imageView 添加图片
-    [imageView setImage:[UIImage imageNamed:@""]];
+    [imageView setImage:[UIImage imageNamed:@"5"]];
     // 把imageView 添加到UPlabel上面
     [self.UPLabel addSubview:imageView];
     // 开启imageView 的交互

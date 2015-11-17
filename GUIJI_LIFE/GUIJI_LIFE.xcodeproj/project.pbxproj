@@ -53,6 +53,10 @@
 		C296F1521BF22BD1008A9EBD /* UIView+Genie.m in Sources */ = {isa = PBXBuildFile; fileRef = C296F1511BF22BD1008A9EBD /* UIView+Genie.m */; };
 		C296F1551BF22C1C008A9EBD /* bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = C296F1531BF22C1C008A9EBD /* bubble.png */; };
 		C296F1561BF22C1C008A9EBD /* love.png in Resources */ = {isa = PBXBuildFile; fileRef = C296F1541BF22C1C008A9EBD /* love.png */; };
+		C2993CF51BFAB65E00BEF899 /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = C2993CF11BFAB65E00BEF899 /* 7.png */; settings = {ASSET_TAGS = (); }; };
+		C2993CF61BFAB65E00BEF899 /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = C2993CF21BFAB65E00BEF899 /* 5.png */; settings = {ASSET_TAGS = (); }; };
+		C2993CF71BFAB65E00BEF899 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = C2993CF31BFAB65E00BEF899 /* 4.png */; settings = {ASSET_TAGS = (); }; };
+		C2993CF81BFAB65E00BEF899 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = C2993CF41BFAB65E00BEF899 /* 3.png */; settings = {ASSET_TAGS = (); }; };
 		C2BCD6611BF58F04001AC6A6 /* ClockHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BCD6601BF58F04001AC6A6 /* ClockHelper.m */; };
 /* End PBXBuildFile section */
 
@@ -126,6 +130,10 @@
 		C296F1511BF22BD1008A9EBD /* UIView+Genie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Genie.m"; sourceTree = "<group>"; };
 		C296F1531BF22C1C008A9EBD /* bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bubble.png; sourceTree = "<group>"; };
 		C296F1541BF22C1C008A9EBD /* love.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = love.png; sourceTree = "<group>"; };
+		C2993CF11BFAB65E00BEF899 /* 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7.png; sourceTree = "<group>"; };
+		C2993CF21BFAB65E00BEF899 /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
+		C2993CF31BFAB65E00BEF899 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
+		C2993CF41BFAB65E00BEF899 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		C2BCD65F1BF58F04001AC6A6 /* ClockHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClockHelper.h; sourceTree = "<group>"; };
 		C2BCD6601BF58F04001AC6A6 /* ClockHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClockHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -198,6 +206,10 @@
 		C213D4DB1BF1D4C30000535D /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				C2993CF11BFAB65E00BEF899 /* 7.png */,
+				C2993CF21BFAB65E00BEF899 /* 5.png */,
+				C2993CF31BFAB65E00BEF899 /* 4.png */,
+				C2993CF41BFAB65E00BEF899 /* 3.png */,
 				C26273291BF07034004DE7D4 /* beizhu.txt */,
 				C296F1531BF22C1C008A9EBD /* bubble.png */,
 				C296F1541BF22C1C008A9EBD /* love.png */,
@@ -567,10 +579,14 @@
 				C262734D1BF07034004DE7D4 /* beizhu.txt in Resources */,
 				C296F14E1BF22B95008A9EBD /* PackCell.xib in Resources */,
 				C26273431BF07034004DE7D4 /* beizhu.txt in Resources */,
+				C2993CF61BFAB65E00BEF899 /* 5.png in Resources */,
+				C2993CF81BFAB65E00BEF899 /* 3.png in Resources */,
 				C296F1561BF22C1C008A9EBD /* love.png in Resources */,
 				C213D4DA1BF1D48D0000535D /* Trail_UpCell.xib in Resources */,
 				C26273421BF07034004DE7D4 /* beizhu.txt in Resources */,
 				C26273401BF07034004DE7D4 /* beizhu.txt in Resources */,
+				C2993CF71BFAB65E00BEF899 /* 4.png in Resources */,
+				C2993CF51BFAB65E00BEF899 /* 7.png in Resources */,
 				C296F1551BF22C1C008A9EBD /* bubble.png in Resources */,
 				C213D4E71BF1EE370000535D /* PackTimeShaft.png in Resources */,
 				C26273451BF07034004DE7D4 /* beizhu.txt in Resources */,

@@ -101,7 +101,7 @@
     //Corner button
     _buttonCorner = [UIButton buttonWithType:UIButtonTypeCustom];
     [_buttonCorner setTitle:@"菜单" forState:UIControlStateNormal];
-//        [_buttonCorner setImage:[UIImage imageNamed:_strCornerButtonImageName] forState:UIControlStateNormal];
+
     [_buttonCorner addTarget:self action:@selector(hideMenu:) forControlEvents:UIControlEventTouchUpInside];
     [_buttonCorner setFrame:CGRectMake(self.view.frame.size.width-50, self.view.frame.size.height-70, 40, 40)];
 
@@ -131,12 +131,10 @@
         NSString *stringDate=[formatter stringFromDate:newdate];
          UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         [button setTag:i];
-        [button setBackgroundColor:[UIColor cyanColor]];
         [button addTarget:self action:@selector(hideMenu:) forControlEvents:UIControlEventTouchUpInside];
         
         
          [button setTitle:stringDate forState:UIControlStateNormal];
-//        [button setImage:[UIImage imageNamed:[_arrButtonImageName objectAtIndex:i]] forState:UIControlStateNormal];
 
         [button setFrame:CGRectMake(0, 0, 70, 70)];
         [_arrButtons addObject:button];

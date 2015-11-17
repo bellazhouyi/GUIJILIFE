@@ -80,6 +80,8 @@ typedef void (^block) (void);
 // 日期
 @property (nonatomic,strong ) NSString *date;
 
+// 显示今天日期
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @end
 
 static NSString *const cellID = @"mycell";
@@ -95,6 +97,8 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     NSDate *date=[NSDate date];
     NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"yyyy.MM.dd"];
+    
+    self.dateLabel.text=[formatter stringFromDate:date];
     
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     
@@ -165,8 +169,20 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     self.boundingBox.delegate = self;
     self.boundingBox.dataSource = self;
     
-
+    self.boundingBox.showsVerticalScrollIndicator=NO;
+    self.boundingBox.backgroundView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"4"]];
+    // 添加点击空白或背景收起键盘
+    UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+    tapGr.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapGr];
 }
+
+#pragma mark - 点击空白或背景收起键盘
+-(void)viewTapped:(UITapGestureRecognizer*)tapGr
+{
+    [self.view endEditing:YES];
+}
+
 
 #pragma mark -- 返回
 - (IBAction)backAction:(UIButton *)sender {
@@ -278,7 +294,7 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
 - (void) genieToRect: (CGRect)rect edge: (BCRectEdge) edge
 {
     
-    _endRect = CGRectInset(rect,50.0,50.0);
+    _endRect = CGRectInset(rect,40.0,40.0);
 
     if (self.viewIsIn) {
         
@@ -384,7 +400,8 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
         }
         
         Boxcell.textLabel.text = self.dateAllArray[indexPath.row];
-        
+        Boxcell.backgroundColor=[UIColor clearColor];
+        Boxcell.selectionStyle = UITableViewCellSelectionStyleNone;
         return Boxcell;
         
     }else{
