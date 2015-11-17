@@ -25,8 +25,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    //定义MKMapView视图
-    MKMapView *mapView = [[MKMapView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     
     //初始化CLLocationManager属性
     self.locationManager = [[CLLocationManager alloc]init];
@@ -40,11 +38,6 @@
         //用户是否允许位置访问
         [CLLocationManager locationServicesEnabled];
         
-        //设置跟踪模式
-        [mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
-        
-        //设置地图样式
-        mapView.mapType = MKMapTypeStandard;
     }
     
     //iOS9新特性
@@ -54,14 +47,6 @@
     }
     
     
-    //打开地图的总开关
-    mapView.showsUserLocation = YES;
-    
-    //添加到window上
-    [self.window addSubview:mapView];
-    
-    //设置代理
-    mapView.delegate = self;
     self.locationManager.delegate = self;
     
     //开启定位功能
@@ -221,6 +206,26 @@
    
     [self saveContext];
 }
+
+#pragma mark -- 处理内存警告问题
+-(void)applicationDidReceiveMemoryWarning:(UIApplication *)application{
+    
+    NSDate *date = [NSDate date];
+    
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    
+    NSString *dateStr = [formatter stringFromDate:date];
+    
+    TrailHelper *trailHelper = [TrailHelper sharedTrailHelper];
+    
+    //把数据库中不需要的数据给删除
+    [trailHelper removeDataWithSimpleDataByDate:dateStr];
+    
+    NSLog(@"内存警告");
+}
+
 
 
 #pragma mark - Core Data stack

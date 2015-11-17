@@ -48,85 +48,7 @@
     //保存并更新
     [self.appDelegate saveContext];
     
-    
 }
-
-/*
-#pragma mark 判断当前系统时间和指定时间是否是一致的
--(BOOL)compareCurrentDate:(NSDate *)currentDate withSpecifiedDate:(NSInteger)hour{
-    
-    //算出当前时间的偏移量
-    int currentDateOffset = (int)[self calculateOffsetFromSpecifiedTime:currentDate];
-    
-    //获取根据自己规定的整点得到时间
-    NSDate *specifiedTime = [self getCustomDateWithHour:hour];
-    
-    //算出指定时间的偏移量
-    int specifiedTimeOffset = (int)[self calculateOffsetFromSpecifiedTime:specifiedTime];
-    
-    if (currentDateOffset == specifiedTimeOffset) {
-        return YES;
-    }
-    else{
-        return NO;
-    }
-}
-
-#pragma mark 生成当天的某个具体时间点
-- (NSDate *)getCustomDateWithHour:(NSInteger)hour
-{
-    //获取当前时间
-    NSDate *currentDate = [NSDate date];
-    
-    NSCalendar *currentCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSDateComponents *currentComps = [[NSDateComponents alloc] init];
-    
-    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
-    
-    currentComps = [currentCalendar components:unitFlags fromDate:currentDate];
-    
-    //设置当天的某个点
-    NSDateComponents *resultComps = [[NSDateComponents alloc] init];
-    [resultComps setYear:[currentComps year]];
-    [resultComps setMonth:[currentComps month]];
-    [resultComps setDay:[currentComps day]];
-    [resultComps setHour:hour];
-    [resultComps setMinute:24];
-    [resultComps setSecond:0];
-    
-    NSCalendar *resultCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    
-    return [resultCalendar dateFromComponents:resultComps];
-}
-
-#pragma mark 根据当前时间算出距离某一个时间的偏移量
--(double)calculateOffsetFromSpecifiedTime:(NSDate *)currentDate{
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    
-    // 设置时间格式
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    
-    
-    NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
-    
-    //设置时区 ＋8:00
-    [dateFormatter setTimeZone:timeZone];
-    
-    // 设置过去的某个时间点比如:2015-10-01 00:00:00
-    NSString  *someDayStr= @"2015-10-01 00:00:00";
-    
-    NSDate *someDayDate = [dateFormatter dateFromString:someDayStr];
-    
-    //当前时间距离2015-10-01 00:00:00的秒数
-    NSTimeInterval time=[currentDate timeIntervalSinceDate:someDayDate];
-    
-    return time;
-    
-}
-
-*/
-
 
 #pragma mark 根据日期筛选数据
 -(NSArray *)filterMapInfoDataByDate:(NSString *)date{
@@ -173,6 +95,72 @@
 #pragma mark 返回所有数据
 -(NSArray *)allMapInfo{
     return  [self gainAllMapInfoFromCoreData];
+}
+
+
+#pragma mark 移除多个相同时间的数据
+-(NSArray *)removeDataWithSimpleDataByDate:(NSString *)date{
+    NSArray *mapInfoArray = [self filterMapInfoDataByDate:date];
+    
+    NSMutableArray *arrayMapInfo = [NSMutableArray arrayWithArray:mapInfoArray];
+    
+    //去掉数据中时间重复的数据
+    for (int count = 0; count < arrayMapInfo.count; count ++) {
+        for (int next = count+1; next < arrayMapInfo.count ; ) {
+            if ([[arrayMapInfo[count] time] isEqualToString:[arrayMapInfo[next] time]]) {
+                
+                //从数据中删除
+                [self.appDelegate.managedObjectContext deleteObject:arrayMapInfo[next]];
+                [self.appDelegate saveContext];
+                
+                [arrayMapInfo removeObjectAtIndex:next];
+                
+            }else{
+                //如果时间不同,但是地名信息是NULL，也舍弃。
+                if ([arrayMapInfo[next] locationName] == NULL) {
+                    
+                    //从数据中删除
+                    [self.appDelegate.managedObjectContext deleteObject:arrayMapInfo[next]];
+                    [self.appDelegate saveContext];
+                    //之前在这里数组越界，是因为自己之前的代码，如果是最后一个元素，先在数组中移除了next,后来又要取next,但是next已经被删除了，是找不到对应的，所以报错。
+                    [arrayMapInfo removeObjectAtIndex:next];
+                }
+                else{
+                    next ++;
+                }
+            }
+        }
+    }
+    
+    //移除同一个时间段内,
+    for (int count = 0; count < arrayMapInfo.count; count ++) {
+        //数组中第count个元素的小时
+        NSString *countHour = [[arrayMapInfo[count] time] substringToIndex:2];
+        for (int next = count + 1; next < arrayMapInfo.count; ) {
+            //数组中第next个元素的小时
+            NSString *nextHour = [[arrayMapInfo[next] time] substringToIndex:2];
+            //如果两个元素所处的小时段是一致的并且地理位置也一直没有改变,则剔除舍弃。
+            if ([countHour isEqualToString:nextHour] && [[arrayMapInfo[count] locationName] isEqualToString:[arrayMapInfo[next] locationName]]) {
+                //从数据库中删除
+                [self.appDelegate.managedObjectContext deleteObject:arrayMapInfo[next]];
+                [self.appDelegate saveContext];
+                
+                //从数组中移除
+                [arrayMapInfo removeObjectAtIndex:next];
+                
+            }else{
+                next ++;
+            }
+        }
+    }
+    
+    
+    
+    
+    
+
+    return arrayMapInfo;
+    
 }
 
 

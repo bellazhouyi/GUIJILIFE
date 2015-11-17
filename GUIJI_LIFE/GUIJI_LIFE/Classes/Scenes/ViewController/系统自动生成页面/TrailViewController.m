@@ -79,40 +79,12 @@ static NSString *downCellID = @"cellDown_Identifier";
     NSString *specifiedDate = self.date;
     
     //从数据库中得到同一天的用户轨迹相关信息
-    NSArray *allMapInfo = [trailHelper filterMapInfoDataByDate:specifiedDate];
+    NSArray *allMapInfo = [trailHelper removeDataWithSimpleDataByDate:specifiedDate];
     
-    //得到数据
+    //得到刷选后的数据--这些数据已经是移除相同时间同一位置后的。
     self.arrayMapInfo = [NSMutableArray arrayWithArray:allMapInfo];
     
-    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     
-    //去掉数据中时间重复的数据
-    for (int count = 0; count < self.arrayMapInfo.count; count ++) {
-        for (int next = count+1; next < self.arrayMapInfo.count ; ) {
-            if ([[self.arrayMapInfo[count] time] isEqualToString:[self.arrayMapInfo[next] time]]) {
-                
-                //从数据中删除
-                [appDelegate.managedObjectContext deleteObject:self.arrayMapInfo[next]];
-                [appDelegate saveContext];
-                
-                [self.arrayMapInfo removeObjectAtIndex:next];
-                
-            }else{
-                //如果时间不同,但是地名信息是NULL，也舍弃。
-                if ([self.arrayMapInfo[next] locationName] == NULL) {
-                    
-                    //从数据中删除
-                    [appDelegate.managedObjectContext deleteObject:self.arrayMapInfo[next]];
-                    [appDelegate saveContext];
-                    //之前在这里数组越界，是因为自己之前的代码，如果是最后一个元素，先在数组中移除了next,后来又要取next,但是next已经被删除了，是找不到对应的，所以报错。
-                    [self.arrayMapInfo removeObjectAtIndex:next];
-                }
-                else{
-                    next ++;
-                }
-            }
-        }
-    }
 }
 
 #pragma mark - 禁止屏幕旋转
