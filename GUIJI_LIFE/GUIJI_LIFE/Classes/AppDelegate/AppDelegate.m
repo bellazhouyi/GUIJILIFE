@@ -18,6 +18,8 @@
 @property(nonatomic,strong) CLLocationManager *locationManager;
 
 
+@property (nonatomic,strong) Schedule *schedule;
+
 @end
 
 @implementation AppDelegate
@@ -176,9 +178,23 @@
 
 
 
-
+#pragma mark - 程序将要进入后台
 - (void)applicationWillResignActive:(UIApplication *)application {
   
+    ScheduleHelper *scheduleHelper = [ScheduleHelper sharedDatamanager];
+    
+    scheduleHelper.scheduleArray = [scheduleHelper gainAllData];
+    
+    // 将showBox 设置为 NO  收回盒子
+    for (int i = 0; i <= scheduleHelper.scheduleArray.count - 1; i ++) {
+        _schedule = scheduleHelper.scheduleArray[i];
+        
+        _schedule.showBox = [NSNumber numberWithBool:NO];
+        
+        [scheduleHelper.appDelegate.managedObjectContext save:nil];
+    }
+
+
 }
 
 #pragma mark 程序进入后台

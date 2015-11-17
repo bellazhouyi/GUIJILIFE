@@ -80,6 +80,11 @@ typedef void (^block) (void);
 // 日期
 @property (nonatomic,strong ) NSString *date;
 
+// cell 的 y
+@property (nonatomic,assign) CGFloat celly;
+// 判断textField是否上弹
+@property (nonatomic,assign) BOOL up;
+
 // 显示今天日期
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @end
@@ -95,6 +100,9 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     
     //获得当天的值
     NSDate *date=[NSDate date];
+    // 获取前一天
+    NSDate *lastDay = [NSDate dateWithTimeInterval:-24*60*60 sinceDate:date];//前一天
+    
     NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"yyyy.MM.dd"];
     
@@ -106,10 +114,28 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     
     comps = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:date];
     
+    // 前一天的时间
+    comps = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:lastDay];
+    
     // 获取当天日期
     self.date = [formatter stringFromDate:date];
+
+    NSString *lastd = [formatter stringFromDate:lastDay];
     
-    NSLog(@"~~~~~%@",self.date);
+    ScheduleHelper *scheduleHelper = [ScheduleHelper sharedDatamanager];
+    
+#pragma  mark  - 删除前一天的数据
+    // 获取前一天的数据
+    [scheduleHelper requestWithDate:lastd];
+    
+    for (int i = 0; i <= scheduleHelper.scheduleArray.count - 1; i ++)
+    {
+        
+        // 删除前一天的数据
+        [scheduleHelper.appDelegate.managedObjectContext deleteObject:scheduleHelper.scheduleArray[i]];
+    }
+
+    
     
     // 过去7天获取日期
     for (int i = 0; i < 7; i++)
@@ -176,6 +202,68 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     tapGr.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGr];
 }
+
+
+#pragma mark 弹出键盘
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    
+    
+    MyCell *myCell = (MyCell *)[[[textField superview] superview] superview];
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:myCell];
+    
+    CGRect cellRect = [self.tableView rectForRowAtIndexPath:indexPath];
+    
+    
+    _celly = cellRect.origin.y - self.tableView.contentOffset.y;
+    
+    
+    if (_celly > self.tableView.frame.size.height - 300) {
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            
+            
+            self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, - 216, self.tableView.frame.size.width, self.tableView.frame.size.height);
+            
+            
+            _up = YES;
+        }];
+        
+        
+        
+    }
+    
+    
+    return YES;
+}
+
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+    
+    if (_up == YES) {
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            
+
+            
+            // self.tableView.contentOffset = CGPointMake(0, self.tableView.contentOffset.y + 216);
+            
+            
+            self.tableView.frame = CGRectMake(self.tableView.frame.origin.x,self.tableView.frame.origin.y + 216, self.tableView.frame.size.width, self.tableView.frame.size.height);
+            
+            
+            
+        }];
+        
+        _up = NO;
+    }
+    
+    return YES;
+    
+}
+
 
 #pragma mark - 点击空白或背景收起键盘
 -(void)viewTapped:(UITapGestureRecognizer*)tapGr
@@ -454,7 +542,13 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
 {
     
     if (self.boundingBox == tableView) {
-        return nil;
+        UILabel *titleLabel = [[UILabel alloc] init];
+        titleLabel.frame = CGRectMake(160, 0,self.view.frame.size.width - 60, 80);
+        titleLabel.textColor = [UIColor orangeColor];
+        titleLabel.textAlignment = NSTextAlignmentCenter;
+        titleLabel.text = @"过去7天的日程";
+        return titleLabel;
+
     }else{
     
     UILabel *titleLabel = [[UILabel alloc] init];
@@ -472,7 +566,7 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (self.boundingBox == tableView) {
-        return 0;
+        return 50;
     }else{
     
     return 80;

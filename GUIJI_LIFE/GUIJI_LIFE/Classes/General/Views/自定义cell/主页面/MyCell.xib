@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="354" height="176"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="354" height="175"/>
+                <rect key="frame" x="0.0" y="0.0" width="354" height="175.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bubble.png" translatesAutoresizingMaskIntoConstraints="NO" id="1lu-Vy-4Jl">
@@ -36,7 +36,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kql-jX-SZA">
-                        <rect key="frame" x="10" y="10" width="75" height="155"/>
+                        <rect key="frame" x="10" y="10" width="60" height="155"/>
                         <animations/>
                         <color key="tintColor" red="0.85490196080000003" green="0.32113399780000002" blue="0.3919888279" alpha="1" colorSpace="calibratedRGB"/>
                         <state key="normal" title="Button"/>
@@ -45,10 +45,10 @@
                         </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3qV-Tp-LPu">
-                        <rect key="frame" x="90" y="5" width="254" height="165"/>
+                        <rect key="frame" x="75" y="5" width="269" height="165"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="添加时间" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dYt-84-21H">
-                                <rect key="frame" x="0.0" y="0.0" width="254" height="130"/>
+                                <rect key="frame" x="0.0" y="0.0" width="269" height="130"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -61,7 +61,7 @@
                                 </connections>
                             </switch>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NWk-F3-Okc">
-                                <rect key="frame" x="169" y="131" width="80" height="33"/>
+                                <rect key="frame" x="184" y="131" width="80" height="33"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.2828922176" green="0.58236794489999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -75,7 +75,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNg-3J-c4H">
-                                <rect key="frame" x="172" y="130" width="72" height="35"/>
+                                <rect key="frame" x="187" y="130" width="72" height="35"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="tintColor" red="0.2828922176" green="0.58236794489999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -138,7 +138,7 @@
                     <constraint firstAttribute="trailing" secondItem="dzM-7d-Qvq" secondAttribute="trailing" constant="5" id="9wE-w9-DVa"/>
                     <constraint firstItem="3qV-Tp-LPu" firstAttribute="leading" secondItem="Kql-jX-SZA" secondAttribute="trailing" constant="5" id="Cx7-gT-35d"/>
                     <constraint firstItem="3qV-Tp-LPu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Fjv-mQ-ai5"/>
-                    <constraint firstItem="dzM-7d-Qvq" firstAttribute="leading" secondItem="Kql-jX-SZA" secondAttribute="trailing" constant="5" id="JgZ-uQ-dMO"/>
+                    <constraint firstItem="dzM-7d-Qvq" firstAttribute="leading" secondItem="Kql-jX-SZA" secondAttribute="trailing" constant="20" id="JgZ-uQ-dMO"/>
                     <constraint firstItem="1lu-Vy-4Jl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="UOO-Ln-Z6X"/>
                     <constraint firstItem="Kql-jX-SZA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="aJ3-EE-9Xm"/>
                     <constraint firstAttribute="bottom" secondItem="3qV-Tp-LPu" secondAttribute="bottom" constant="5" id="cMX-Dn-bZI"/>

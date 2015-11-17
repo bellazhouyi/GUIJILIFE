@@ -25,6 +25,8 @@
 
 + (instancetype)sharedDatamanager;
 
+- (NSMutableArray *)gainAllData;
+
 // 从数据库申请数据
 - (void)requestWithDate:(NSString *)date;
 

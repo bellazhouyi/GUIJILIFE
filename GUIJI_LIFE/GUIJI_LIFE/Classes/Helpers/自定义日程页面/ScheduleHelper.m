@@ -140,7 +140,34 @@
     
 }
 
+#pragma mark 获取全部数据
+- (NSMutableArray *)gainAllData
+{
+    
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"NextSchedule" inManagedObjectContext:self.appDelegate.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    // Specify criteria for filtering which objects to fetch
+    
+    
+    // Specify how the fetched objects should be sorted
 
+    NSError *error = nil;
+    NSArray *fetchedObjects = [self.appDelegate.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (fetchedObjects == nil) {
+        NSLog(@"数据为空");
+    }
+    else
+    {
+        
+        [self.scheduleArray addObjectsFromArray:fetchedObjects];
+    }
+    
+    return _scheduleArray;
+
+
+}
 
 
 

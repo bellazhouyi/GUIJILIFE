@@ -25,10 +25,6 @@
 {
     if (self = [super initWithCoder:aDecoder]) {
     
-
-        
-    
-        
         
     }
     return self;
@@ -177,6 +173,23 @@
                  
              }];
          }];
+        // 如果namelabel 不为空 就显示气泡图片
+        if ([self.namelabel.text isEqualToString:@""]) {
+            
+            self.bubbleimage.hidden = YES;
+            
+            // 如果隐藏那么 isShow = NO;
+            _schedule.isShow = [NSNumber numberWithBool:NO];
+        }
+        else
+        {
+            self.bubbleimage.hidden = NO;
+            
+            // 如果不隐藏 那么isShow = YES;
+            _schedule.isShow = [NSNumber numberWithBool:YES];
+        }
+
+        
         
         // 抽屉收起 showBox = NO;
         _schedule.showBox = [NSNumber numberWithBool:NO];
