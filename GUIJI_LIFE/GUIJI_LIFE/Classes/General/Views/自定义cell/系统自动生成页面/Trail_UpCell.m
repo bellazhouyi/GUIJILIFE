@@ -13,14 +13,8 @@
 #pragma mark - 视图加载完成
 - (void)awakeFromNib {
     
-    // 创建imageView
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:self.UPLabel.bounds];
-    // 给imageView 添加图片
-    [imageView setImage:[UIImage imageNamed:@"5"]];
-    // 把imageView 添加到UPlabel上面
-    [self.UPLabel addSubview:imageView];
-    // 开启imageView 的交互
-    imageView.userInteractionEnabled = YES;
+    UIColor *color=[UIColor colorWithPatternImage:[UIImage imageNamed:@"5"]];
+    [self.UPLabel setBackgroundColor:color];
     
     
 }

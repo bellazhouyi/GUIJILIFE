@@ -65,7 +65,7 @@ static NSString *downCellID = @"cellDown_Identifier";
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     
     //禁止tableView 回弹
-    self.tableView.bounces = NO;
+//    self.tableView.bounces = NO;
     
     
 }

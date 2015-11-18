@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -74,7 +74,7 @@
                                                 <blurEffect style="light"/>
                                             </visualEffectView>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3Uv-PX-qRl">
-                                                <rect key="frame" x="924" y="167" width="226" height="283"/>
+                                                <rect key="frame" x="818" y="80" width="352" height="440"/>
                                                 <animations/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -82,7 +82,7 @@
                                                 </constraints>
                                             </tableView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLO-SY-C2D">
-                                                <rect key="frame" x="914" y="25" width="40" height="40"/>
+                                                <rect key="frame" x="610" y="25" width="40" height="40"/>
                                                 <animations/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="FOs-Ym-A10"/>
@@ -114,15 +114,16 @@
                                             <constraint firstItem="w4K-Kn-bba" firstAttribute="leading" secondItem="rhP-7V-eLH" secondAttribute="trailing" constant="-105" id="2E3-uP-Ykz"/>
                                             <constraint firstAttribute="trailing" secondItem="w4K-Kn-bba" secondAttribute="trailing" id="2mz-s6-WOf"/>
                                             <constraint firstItem="yp2-g6-XbI" firstAttribute="top" secondItem="hgh-US-3FB" secondAttribute="top" id="684-0Y-dXe"/>
+                                            <constraint firstItem="FLO-SY-C2D" firstAttribute="leading" secondItem="Ydc-X8-YCx" secondAttribute="trailing" constant="10" id="9Zb-aJ-uvW"/>
                                             <constraint firstItem="Ydc-X8-YCx" firstAttribute="top" secondItem="hgh-US-3FB" secondAttribute="top" id="AYJ-Ax-E7G"/>
                                             <constraint firstAttribute="bottom" secondItem="ZjJ-ci-g54" secondAttribute="bottom" constant="30" id="E21-lC-cTM"/>
                                             <constraint firstItem="yp2-g6-XbI" firstAttribute="top" secondItem="hgh-US-3FB" secondAttribute="top" id="GLr-eD-Y7m"/>
                                             <constraint firstItem="3Uv-PX-qRl" firstAttribute="leading" secondItem="FLO-SY-C2D" secondAttribute="trailing" constant="-30" id="HOB-7g-wfc"/>
-                                            <constraint firstAttribute="bottom" secondItem="3Uv-PX-qRl" secondAttribute="bottom" constant="150" id="JiB-Ju-SN9"/>
+                                            <constraint firstAttribute="bottom" secondItem="3Uv-PX-qRl" secondAttribute="bottom" constant="80" id="JiB-Ju-SN9"/>
                                             <constraint firstItem="2et-uI-Z8A" firstAttribute="leading" secondItem="qGU-Ik-0Yd" secondAttribute="trailing" constant="70" id="LWI-Me-Chu"/>
-                                            <constraint firstItem="3Uv-PX-qRl" firstAttribute="top" secondItem="hgh-US-3FB" secondAttribute="top" constant="167" id="OdV-u2-Ucq"/>
+                                            <constraint firstItem="3Uv-PX-qRl" firstAttribute="top" secondItem="hgh-US-3FB" secondAttribute="top" constant="80" id="OdV-u2-Ucq"/>
                                             <constraint firstItem="rhP-7V-eLH" firstAttribute="top" secondItem="ZjJ-ci-g54" secondAttribute="bottom" constant="30" id="SuX-Vs-UMF"/>
-                                            <constraint firstAttribute="trailing" secondItem="3Uv-PX-qRl" secondAttribute="trailing" constant="50" id="UFd-ip-kk9"/>
+                                            <constraint firstAttribute="trailing" secondItem="3Uv-PX-qRl" secondAttribute="trailing" constant="30" id="UFd-ip-kk9"/>
                                             <constraint firstItem="rhP-7V-eLH" firstAttribute="bottom" secondItem="w4K-Kn-bba" secondAttribute="bottom" id="UIQ-Di-8f7"/>
                                             <constraint firstItem="w4K-Kn-bba" firstAttribute="top" secondItem="hgh-US-3FB" secondAttribute="top" id="VTM-tK-XkR"/>
                                             <constraint firstItem="rhP-7V-eLH" firstAttribute="trailing" secondItem="w4K-Kn-bba" secondAttribute="trailing" id="Vs3-nj-Cma"/>
@@ -151,6 +152,7 @@
                                                 <exclude reference="fXW-jM-I6b"/>
                                                 <exclude reference="g2R-fQ-otz"/>
                                                 <exclude reference="qqK-CF-KSj"/>
+                                                <exclude reference="HOB-7g-wfc"/>
                                             </mask>
                                         </variation>
                                     </view>

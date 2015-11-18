@@ -13,14 +13,8 @@
 #pragma mark - 视图加载完成
 - (void)awakeFromNib {
     
-    // 创建imageView
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:self.DownLabel.bounds];
-    // 给imageView 添加图片
-    [imageView setImage:[UIImage imageNamed:@"5"]];
-    // 将imageView 添加到DownLabel上
-    [self.DownLabel addSubview:imageView];
-    // 将imageView 交互开启
-    imageView.userInteractionEnabled = YES;
+    UIColor *color=[UIColor colorWithPatternImage:[UIImage imageNamed:@"5"]];
+    [self.DownLabel setBackgroundColor:color];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
