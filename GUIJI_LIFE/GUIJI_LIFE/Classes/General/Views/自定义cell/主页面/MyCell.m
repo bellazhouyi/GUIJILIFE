@@ -116,7 +116,9 @@
 
     [s.appDelegate.managedObjectContext save:&error];
 
+    // 调用block
     
+    self.block();
     
     
     

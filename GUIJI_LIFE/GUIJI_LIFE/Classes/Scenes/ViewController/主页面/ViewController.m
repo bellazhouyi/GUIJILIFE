@@ -190,6 +190,8 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    self.tableView.estimatedRowHeight = 50;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 
     // 设置代理
     self.boundingBox.delegate = self;
@@ -513,6 +515,14 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     cell.schedule = schedule;
 
     
+        cell.namelabel.numberOfLines=0;
+        cell.namelabel.preferredMaxLayoutWidth=CGRectGetWidth(cell.namelabel.bounds);
+        
+        // 执行block
+        cell.block = ^(){
+            [tableView reloadData];
+        };
+        
     return cell;
     }
 }
@@ -530,7 +540,7 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     if (self.boundingBox == tableView) {
         return 45;
     }else{
-    return 100;
+    return UITableViewAutomaticDimension;
     }
 }
 

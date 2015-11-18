@@ -10,9 +10,13 @@
 #import "UIView+Genie.h"
 #import <QuartzCore/QuartzCore.h>
 
-
+// 声明一个刷新主页面中tableView
+typedef void(^blockRefresh)();
 
 @interface MyCell : UITableViewCell
+
+// 声明block 属性
+@property (nonatomic,strong) blockRefresh block;
 
 @property (weak, nonatomic) IBOutlet UIImageView *imView;
 
