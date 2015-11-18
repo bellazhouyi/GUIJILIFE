@@ -528,7 +528,7 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.boundingBox == tableView) {
-        return 50;
+        return 45;
     }else{
     return 100;
     }
@@ -542,12 +542,8 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
 {
     
     if (self.boundingBox == tableView) {
-        UILabel *titleLabel = [[UILabel alloc] init];
-        titleLabel.frame = CGRectMake(160, 0,self.view.frame.size.width - 60, 80);
-        titleLabel.textColor = [UIColor orangeColor];
-        titleLabel.textAlignment = NSTextAlignmentCenter;
-        titleLabel.text = @"过去7天的日程";
-        return titleLabel;
+       
+        return nil;
 
     }else{
     
@@ -566,7 +562,7 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (self.boundingBox == tableView) {
-        return 50;
+        return 0;
     }else{
     
     return 80;
