@@ -78,12 +78,25 @@ static NSString *downCellID = @"cellDown_Identifier";
     //得到指定的日期
     NSString *specifiedDate = self.date;
     
-    //从数据库中得到同一天的用户轨迹相关信息
-    NSArray *allMapInfo = [trailHelper removeDataWithSimpleDataByDate:specifiedDate];
+    NSDate *currentDay = [NSDate date];
     
-    //得到刷选后的数据--这些数据已经是移除相同时间同一位置后的。
-    self.arrayMapInfo = [NSMutableArray arrayWithArray:allMapInfo];
+    NSDateFormatter *formatter = [NSDateFormatter new];
     
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    
+    NSString *currentDateStr = [formatter stringFromDate:currentDay];
+    
+    //如果是当天的需要删除某些数据，如果是前几天的就直接取就可以了。
+    if ([currentDateStr isEqualToString:specifiedDate]) {
+        
+        //从数据库中得到同一天的用户轨迹相关信息
+        NSArray *allMapInfo = [trailHelper removeDataWithSimpleDataByDate:specifiedDate];
+        
+        //得到刷选后的数据--这些数据已经是移除相同时间同一位置后的。
+        self.arrayMapInfo = [NSMutableArray arrayWithArray:allMapInfo];
+    }else{
+        self.arrayMapInfo = [NSMutableArray arrayWithArray:[trailHelper filterMapInfoDataByDate:specifiedDate]];
+    }
     
 }
 

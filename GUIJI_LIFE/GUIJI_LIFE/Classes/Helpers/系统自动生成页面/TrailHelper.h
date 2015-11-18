@@ -28,6 +28,7 @@
 -(NSArray *)removeDataWithSimpleDataByDate:(NSString *)date;
 
 
-
+#pragma mark 根据日期筛选数据
+-(NSArray *)filterMapInfoDataByDate:(NSString *)date;
 
 @end
