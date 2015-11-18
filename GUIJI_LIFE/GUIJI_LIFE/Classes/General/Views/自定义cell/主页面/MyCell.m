@@ -59,14 +59,14 @@
     [scheduleHelper.appDelegate.managedObjectContext save:nil];
     
     
-    
+    NSString *hour = [NSString stringWithFormat:@"%@",_schedule.hour];
     //关于闹钟---开启闹钟通知
     if ([_schedule.isClock boolValue] == YES) {
         //写一个通知
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"clock" object:nil userInfo:@{@"time":_schedule.hour,@"content":_schedule.content}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"clock" object:nil userInfo:@{@"time":hour,@"content":_schedule.content}];
     }else{
         //否则，关闭闹钟通知
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"notClock" object:nil userInfo:@{@"time":_schedule.hour}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"notClock" object:nil userInfo:@{@"time":hour}];
     }
     
 }
