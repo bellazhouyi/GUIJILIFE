@@ -10,11 +10,7 @@
 
 @interface TrailViewController : UIViewController
 
-
-
 //用于接收日期字符串
 @property(nonatomic,strong) NSString *date;
-
-
 
 @end

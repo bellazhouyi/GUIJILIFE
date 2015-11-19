@@ -75,12 +75,12 @@
 // 添加完成
 - (IBAction)addDownAction:(UIButton *)sender {
     
-    ScheduleHelper *s = [ScheduleHelper sharedDatamanager];
+    ScheduleHelper *scheduleHelper = [ScheduleHelper sharedDatamanager];
     
     // 申请数据
-    [s requestWithDate:self.date];
+    [scheduleHelper requestWithDate:self.date];
     
-    _schedule = s.scheduleArray[self.num];
+    _schedule = scheduleHelper.scheduleArray[self.num];
 
     
     // 把文本框内容给cell
@@ -114,12 +114,8 @@
     // 保存修改
     NSError *error = nil;
 
-    [s.appDelegate.managedObjectContext save:&error];
+    [scheduleHelper.appDelegate.managedObjectContext save:&error];
 
-    // 调用block
-    
-    self.block();
-    
     
     
     
@@ -142,13 +138,13 @@
 - (void) genieToRect: (CGRect)rect edge: (BCRectEdge) edge
 {
     // 单例
-    ScheduleHelper *s = [ScheduleHelper sharedDatamanager];
+    ScheduleHelper *scheduleHelper = [ScheduleHelper sharedDatamanager];
 
     // 数据库申请数据
-    [s requestWithDate:self.date];
+    [scheduleHelper requestWithDate:self.date];
     
     // 获取 cell的 索引
-    _schedule = s.scheduleArray[self.num];
+    _schedule = scheduleHelper.scheduleArray[self.num];
 
     
     // 设置抽屉 边缘
@@ -225,7 +221,7 @@
     // 保存修改
     NSError *error = nil;
     
-    [s.appDelegate.managedObjectContext save:&error];
+    [scheduleHelper.appDelegate.managedObjectContext save:&error];
     
     self.viewIsIn = ! self.viewIsIn;
     
@@ -279,19 +275,11 @@
         
         self.clockSwitch.on = NO;
     }
-    
-    
-    
-    
 }
-
-
 
 
 - (void)awakeFromNib {
 
-    
-    
     
 }
 
