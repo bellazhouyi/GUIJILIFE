@@ -83,7 +83,7 @@
 #pragma mark 处理从MyCell通知中心接收到的通知--开启闹钟
 -(void)startClock:(NSNotification *)sender{
     
-    NSString *time = [NSString stringWithFormat:@"%@",sender.userInfo[@"time"]];
+    NSString *time = sender.userInfo[@"time"];
     NSString *content = sender.userInfo[@"content"];
     
     ClockHelper *clockHelper = [ClockHelper sharedClockHelper];
@@ -96,7 +96,7 @@
 
 #pragma mark 处理从MyCell通知中心接收到的通知--关闭闹钟
 -(void)stopClock:(NSNotification *)sender{
-    NSString *time = [NSString stringWithFormat:@"%@",sender.userInfo[@"time"]];
+    NSString *time = sender.userInfo[@"time"];
     //遍历闹钟数组
     for (UILocalNotification *localNotification in [ClockHelper sharedClockHelper].notificationArray) {
         NSDate *currentDate  = [[ClockHelper sharedClockHelper] getCustomDateWithHour:[time integerValue]];

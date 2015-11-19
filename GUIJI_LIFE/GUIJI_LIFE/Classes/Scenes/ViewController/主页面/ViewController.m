@@ -525,6 +525,7 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     }
 }
 
+
 #pragma mark  -- UITextFieldDelegate
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     [textField resignFirstResponder];
@@ -598,13 +599,28 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
         
         trailVC.view.backgroundColor = [UIColor whiteColor];
         
+        UITableViewCell *boxCell = [tableView cellForRowAtIndexPath:indexPath];
+        [boxCell setHighlighted:YES animated:YES];
+        
+        
+        if (boxCell.highlighted) {
+            boxCell.textLabel.textColor = [UIColor redColor];
+        }else {
+            boxCell.textLabel.textColor = [UIColor whiteColor];
+        }
+        
         //传日期得值
         trailVC.date = self.dateAllArray[indexPath.row];
         
         [self presentViewController:trailVC animated:YES completion:nil];
         
+        boxCell.highlighted = NO;
         
-        
+        if (boxCell.highlighted) {
+            boxCell.textLabel.textColor = [UIColor redColor];
+        }else {
+            boxCell.textLabel.textColor = [UIColor grayColor];
+        }
         
     }else{
     
@@ -655,8 +671,19 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     //传值
     trailVC.date = dateStr;
     
+    //制作fade的动画效果
+    CATransition *transition = [CATransition animation];
     
-    [self presentViewController:trailVC animated:YES completion:nil];
+    transition.duration = 0.3;
+    
+    transition.type = @"fade";
+    
+    [[UIApplication sharedApplication].delegate window].rootViewController = trailVC;
+    
+    [[[UIApplication sharedApplication].delegate window].layer addAnimation:transition forKey:@"toTrailVC"];
+    
+    //传一下动画效果的key值
+    trailVC.animationKey = [[[[UIApplication sharedApplication].delegate window].layer animationKeys] firstObject];
     
 }
 

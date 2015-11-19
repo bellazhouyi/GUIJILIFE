@@ -13,4 +13,8 @@
 //用于接收日期字符串
 @property(nonatomic,strong) NSString *date;
 
+
+//用于接收动画效果的key值
+@property(nonatomic,strong) NSString *animationKey;
+
 @end

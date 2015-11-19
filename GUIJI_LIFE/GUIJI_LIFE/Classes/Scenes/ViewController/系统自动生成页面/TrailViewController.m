@@ -137,7 +137,19 @@ static NSString *downCellID = @"cellDown_Identifier";
 
 #pragma mark 返回按钮的返回事件
 -(void)backAction:(UIButton *)sender{
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    if ([_animationKey isEqualToString:@"transition"]) {
+        
+        //取消动画
+        [[UIApplication sharedApplication].delegate window].rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil]instantiateViewControllerWithIdentifier:@"HomeVCID"];
+        
+        [[[UIApplication sharedApplication].delegate window].layer removeAnimationForKey:@"toTrailVC"];
+        
+    }else{
+        
+        [self dismissViewControllerAnimated:YES completion:nil];
+        
+    }
 }
 
 
