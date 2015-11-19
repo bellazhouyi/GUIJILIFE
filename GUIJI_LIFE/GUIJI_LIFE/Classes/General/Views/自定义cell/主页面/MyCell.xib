@@ -22,9 +22,15 @@
                             <constraint firstAttribute="width" constant="30" id="v2v-Gq-BK6"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5.png" translatesAutoresizingMaskIntoConstraints="NO" id="Qo1-cN-m2p">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qipao1" translatesAutoresizingMaskIntoConstraints="NO" id="Qo1-cN-m2p">
                         <rect key="frame" x="70" y="5" width="274" height="165"/>
                         <animations/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzM-7d-Qvq">
                         <rect key="frame" x="90" y="5" width="259" height="165.5"/>
@@ -172,7 +178,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="5.png" width="299" height="115"/>
+        <image name="qipao1" width="68" height="150"/>
         <image name="yu1.png" width="68" height="150"/>
     </resources>
 </document>

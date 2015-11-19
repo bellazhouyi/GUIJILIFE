@@ -54,7 +54,7 @@
                                                     <constraint firstAttribute="height" constant="80" id="FP3-cE-aon"/>
                                                     <constraint firstAttribute="width" constant="80" id="zMP-Si-P2H"/>
                                                 </constraints>
-                                                <state key="normal" image="bag1.png"/>
+                                                <state key="normal" image="bag2.png"/>
                                                 <connections>
                                                     <action selector="topAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gLQ-8h-V5r"/>
                                                 </connections>
@@ -86,7 +86,9 @@
                                                     <constraint firstAttribute="height" constant="40" id="FOs-Ym-A10"/>
                                                     <constraint firstAttribute="width" constant="40" id="q36-bN-dza"/>
                                                 </constraints>
-                                                <state key="normal" title="返回"/>
+                                                <state key="normal" title="返回">
+                                                    <color key="titleColor" red="0.85490196080000003" green="0.32113399780000002" blue="0.3919888279" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="backAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="51l-bY-J9w"/>
                                                 </connections>
@@ -151,25 +153,69 @@
                                                         <color key="textColor" red="0.83747632579999998" green="0.3490981782" blue="0.30177687660000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Speach2.png" translatesAutoresizingMaskIntoConstraints="NO" id="EGO-5s-R5I">
+                                                        <rect key="frame" x="235" y="52" width="100" height="100"/>
+                                                        <animations/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="100" id="oso-tW-Ssy"/>
+                                                            <constraint firstAttribute="width" constant="100" id="qBv-uK-rqz"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="轨迹礼物" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEy-PE-LJT">
+                                                        <rect key="frame" x="251" y="92" width="68" height="20.5"/>
+                                                        <animations/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Speach1.png" translatesAutoresizingMaskIntoConstraints="NO" id="f6q-Al-oOG">
+                                                        <rect key="frame" x="150" y="430" width="100" height="100"/>
+                                                        <animations/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="100" id="1q6-H2-0ig"/>
+                                                            <constraint firstAttribute="height" constant="100" id="afr-Qp-Pbc"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="轨迹日程" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTa-mg-Q1j">
+                                                        <rect key="frame" x="166" y="478" width="68" height="20.5"/>
+                                                        <animations/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
                                                 <animations/>
                                                 <color key="backgroundColor" red="0.312142860607724" green="0.30370611645394507" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="phJ-jV-DqR" firstAttribute="leading" secondItem="3MI-0I-nDZ" secondAttribute="trailing" constant="20" id="25f-bh-VM3"/>
+                                                    <constraint firstItem="wTa-mg-Q1j" firstAttribute="leading" secondItem="f6q-Al-oOG" secondAttribute="trailing" constant="-84" id="AtB-ZD-fBf"/>
+                                                    <constraint firstItem="wTa-mg-Q1j" firstAttribute="top" secondItem="f6q-Al-oOG" secondAttribute="bottom" constant="-52" id="EkO-0K-EVr"/>
                                                     <constraint firstItem="5Iq-bT-Bjr" firstAttribute="top" secondItem="phJ-jV-DqR" secondAttribute="bottom" constant="20" id="FF4-HG-cgr"/>
                                                     <constraint firstItem="vAc-Nt-R9p" firstAttribute="leading" secondItem="g59-JK-exU" secondAttribute="leading" constant="10" id="GQ3-r4-wzk"/>
                                                     <constraint firstAttribute="bottom" secondItem="3MI-0I-nDZ" secondAttribute="bottom" constant="210" id="LKe-iU-gGq"/>
                                                     <constraint firstItem="5Iq-bT-Bjr" firstAttribute="leading" secondItem="tw2-Nt-sHb" secondAttribute="trailing" constant="80" id="M15-k5-Qt2"/>
+                                                    <constraint firstItem="xEy-PE-LJT" firstAttribute="centerY" secondItem="EGO-5s-R5I" secondAttribute="centerY" id="TWO-g0-sGf"/>
                                                     <constraint firstItem="VZd-nD-Jzf" firstAttribute="top" secondItem="vAc-Nt-R9p" secondAttribute="bottom" constant="20" id="YN2-kC-cvm"/>
                                                     <constraint firstItem="tw2-Nt-sHb" firstAttribute="top" secondItem="3MI-0I-nDZ" secondAttribute="bottom" constant="20" id="apq-8e-Ntt"/>
                                                     <constraint firstItem="3MI-0I-nDZ" firstAttribute="top" secondItem="qGU-Ik-0Yd" secondAttribute="bottom" constant="80" id="ax8-5S-qtz"/>
                                                     <constraint firstItem="VZd-nD-Jzf" firstAttribute="leading" secondItem="g59-JK-exU" secondAttribute="leading" constant="55" id="dZv-fn-Ejx"/>
                                                     <constraint firstItem="qGU-Ik-0Yd" firstAttribute="leading" secondItem="g59-JK-exU" secondAttribute="leading" constant="130" id="ees-h8-43e"/>
+                                                    <constraint firstItem="f6q-Al-oOG" firstAttribute="top" secondItem="tw2-Nt-sHb" secondAttribute="bottom" id="gmg-Nt-OH1"/>
                                                     <constraint firstItem="tw2-Nt-sHb" firstAttribute="leading" secondItem="VZd-nD-Jzf" secondAttribute="trailing" constant="70" id="l2h-Uk-5xb"/>
+                                                    <constraint firstItem="f6q-Al-oOG" firstAttribute="top" secondItem="3MI-0I-nDZ" secondAttribute="bottom" constant="40" id="rUm-OI-zHc"/>
+                                                    <constraint firstItem="xEy-PE-LJT" firstAttribute="centerX" secondItem="EGO-5s-R5I" secondAttribute="centerX" id="rcs-Kg-lQQ"/>
                                                     <constraint firstAttribute="bottom" secondItem="phJ-jV-DqR" secondAttribute="bottom" constant="210" id="u4o-Uy-2F8"/>
                                                     <constraint firstAttribute="bottom" secondItem="vAc-Nt-R9p" secondAttribute="bottom" constant="210" id="wen-hn-3cF"/>
+                                                    <constraint firstItem="qGU-Ik-0Yd" firstAttribute="top" secondItem="EGO-5s-R5I" secondAttribute="bottom" constant="-42" id="xPY-Dj-zrT"/>
+                                                    <constraint firstItem="f6q-Al-oOG" firstAttribute="leading" secondItem="g59-JK-exU" secondAttribute="leading" constant="150" id="y55-97-c29"/>
                                                     <constraint firstItem="3MI-0I-nDZ" firstAttribute="leading" secondItem="vAc-Nt-R9p" secondAttribute="trailing" constant="20" id="ybH-Gd-s43"/>
+                                                    <constraint firstItem="EGO-5s-R5I" firstAttribute="leading" secondItem="qGU-Ik-0Yd" secondAttribute="trailing" constant="5" id="z1G-ya-cY8"/>
                                                 </constraints>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="gmg-Nt-OH1"/>
+                                                    </mask>
+                                                </variation>
                                             </view>
                                         </subviews>
                                         <animations/>
@@ -308,7 +354,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bag1.png" width="961" height="1041"/>
+        <image name="Speach1.png" width="200" height="200"/>
+        <image name="Speach2.png" width="200" height="200"/>
+        <image name="bag2.png" width="200" height="233"/>
         <image name="bg2.png" width="1080" height="1920"/>
         <image name="gift.png" width="512" height="512"/>
         <image name="person1.png" width="336" height="765"/>

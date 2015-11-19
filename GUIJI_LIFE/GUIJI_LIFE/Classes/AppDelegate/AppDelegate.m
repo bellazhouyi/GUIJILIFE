@@ -181,6 +181,14 @@
 #pragma mark - 程序将要进入后台
 - (void)applicationWillResignActive:(UIApplication *)application {
   
+
+
+}
+
+#pragma mark 程序进入后台
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    
+    // 收回盒子方法
     ScheduleHelper *scheduleHelper = [ScheduleHelper sharedDatamanager];
     
     scheduleHelper.scheduleArray = [scheduleHelper gainAllData];
@@ -194,11 +202,8 @@
         [scheduleHelper.appDelegate.managedObjectContext save:nil];
     }
 
-
-}
-
-#pragma mark 程序进入后台
-- (void)applicationDidEnterBackground:(UIApplication *)application {
+    
+    
     //开启基站定位
     [self.locationManager startMonitoringSignificantLocationChanges];
 
