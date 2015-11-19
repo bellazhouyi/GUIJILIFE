@@ -117,10 +117,10 @@ static NSString *downCellID = @"cellDown_Identifier";
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     
     [backButton setTitle:@"返回" forState:UIControlStateNormal];
-    
+    [backButton setTitleColor:[UIColor colorWithRed:247 / 255.0 green:267 / 255.0 blue:202 / 255.0 alpha:1] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside];
     headerView.transform = CGAffineTransformMakeRotation(M_PI / 2);
-    backButton.frame = CGRectMake(0, 60, 50, 50);
+    backButton.frame = CGRectMake(10, 40, 50, 50);
     
     [headerView addSubview:backButton];
     

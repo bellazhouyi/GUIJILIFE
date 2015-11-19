@@ -24,7 +24,7 @@ static NSString *const cellID = @"cell_ID";
     // 设置
     CGRect rect = [[self view] bounds];
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:rect];
-    [imageView setImage:[UIImage imageNamed:@"love" ]];
+    [imageView setImage:[UIImage imageNamed:@"bg6" ]];
     
 
     self.tableView.backgroundView = imageView;
@@ -131,15 +131,15 @@ static NSString *const cellID = @"cell_ID";
     
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.frame = CGRectMake(80, 0, self.view.frame.size.width - 80, 80);
-    titleLabel.textColor = [UIColor purpleColor];
+    titleLabel.textColor = [UIColor colorWithRed:21 / 255.0 green:147 / 255.0 blue:185 / 255.0 alpha:1];
     titleLabel.text = [NSString stringWithFormat:@"为你%@日的行程添上一笔",self.date];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     [headerView addSubview:titleLabel];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    button.frame = CGRectMake(10, 30, 40, 30);
+    button.frame = CGRectMake(10, 25, 40, 30);
     [button setTitle:@"返回" forState:UIControlStateNormal];
-    [button setTintColor:[UIColor orangeColor]];
+    [button setTintColor:[UIColor colorWithRed:21 / 255.0 green:147 / 255.0 blue:185 / 255.0 alpha:1]];
     [button addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside];
 
     [headerView addSubview:button];

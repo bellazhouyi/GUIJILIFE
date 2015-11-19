@@ -556,8 +556,10 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     }else{
     
     UILabel *titleLabel = [[UILabel alloc] init];
-    titleLabel.frame = CGRectMake(160, 0,self.view.frame.size.width - 60, 80);
-    titleLabel.textColor = [UIColor orangeColor];
+    titleLabel.frame = CGRectMake(170, 0,self.view.frame.size.width - 60, 80);
+        
+        titleLabel.font = [UIFont systemFontOfSize:18 weight:8];
+    titleLabel.textColor = [UIColor colorWithRed:70 / 255.0 green:130 /255.0 blue:147 / 255.0 alpha:1];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.text =[NSString stringWithFormat:@"为你%@日的行程添上一笔",self.date];
     return titleLabel;
