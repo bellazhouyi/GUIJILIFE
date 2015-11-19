@@ -121,7 +121,7 @@ static NSString *downCellID = @"cellDown_Identifier";
     [backButton addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside];
     headerView.transform = CGAffineTransformMakeRotation(M_PI / 2);
     backButton.frame = CGRectMake(10, 40, 50, 50);
-    
+    backButton.titleLabel.font = [UIFont systemFontOfSize:18];
     [headerView addSubview:backButton];
     
     //添加日期

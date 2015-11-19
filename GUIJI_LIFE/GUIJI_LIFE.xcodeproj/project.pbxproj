@@ -49,6 +49,7 @@
 		213EB49A1BFDAD490029AA56 /* qipao1.png in Resources */ = {isa = PBXBuildFile; fileRef = 213EB4991BFDAD490029AA56 /* qipao1.png */; };
 		21FD83071BFDE9F1000DAAF0 /* bg9.png in Resources */ = {isa = PBXBuildFile; fileRef = 21FD83061BFDE9F1000DAAF0 /* bg9.png */; };
 		21FD83091BFDEAE5000DAAF0 /* bg10.png in Resources */ = {isa = PBXBuildFile; fileRef = 21FD83081BFDEAE5000DAAF0 /* bg10.png */; };
+		21FD830D1BFDF04E000DAAF0 /* yu2.png in Resources */ = {isa = PBXBuildFile; fileRef = 21FD830C1BFDF04E000DAAF0 /* yu2.png */; };
 		C213D4D71BF1D48D0000535D /* Trail_DownCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C213D4D21BF1D48D0000535D /* Trail_DownCell.m */; };
 		C213D4D81BF1D48D0000535D /* Trail_DownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C213D4D31BF1D48D0000535D /* Trail_DownCell.xib */; };
 		C213D4D91BF1D48D0000535D /* Trail_UpCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C213D4D51BF1D48D0000535D /* Trail_UpCell.m */; };
@@ -142,6 +143,7 @@
 		213EB4991BFDAD490029AA56 /* qipao1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qipao1.png; sourceTree = "<group>"; };
 		21FD83061BFDE9F1000DAAF0 /* bg9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg9.png; sourceTree = "<group>"; };
 		21FD83081BFDEAE5000DAAF0 /* bg10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg10.png; sourceTree = "<group>"; };
+		21FD830C1BFDF04E000DAAF0 /* yu2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yu2.png; sourceTree = "<group>"; };
 		C213D4D11BF1D48D0000535D /* Trail_DownCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trail_DownCell.h; sourceTree = "<group>"; };
 		C213D4D21BF1D48D0000535D /* Trail_DownCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trail_DownCell.m; sourceTree = "<group>"; };
 		C213D4D31BF1D48D0000535D /* Trail_DownCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Trail_DownCell.xib; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				213EB4991BFDAD490029AA56 /* qipao1.png */,
 				213EB4851BFD5C850029AA56 /* yu1.png */,
 				213EB4561BFD5ACE0029AA56 /* bag1.png */,
+				21FD830C1BFDF04E000DAAF0 /* yu2.png */,
 				213EB4971BFDACF50029AA56 /* bag2.png */,
 				213EB4571BFD5ACE0029AA56 /* bag_256px_1087104_easyicon.net.png */,
 				21FD83081BFDEAE5000DAAF0 /* bg10.png */,
@@ -640,7 +643,7 @@
 				TargetAttributes = {
 					C26272F91BF07015004DE7D4 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = RHFEFUNF6U;
+						DevelopmentTeam = 9NX2ZCM4QL;
 					};
 				};
 			};
@@ -685,6 +688,7 @@
 				213EB46D1BFD5ACE0029AA56 /* bag1.png in Resources */,
 				213EB4761BFD5ACE0029AA56 /* Shopping_Bag_912px_1160277_easyicon.net.png in Resources */,
 				C262730D1BF07015004DE7D4 /* Assets.xcassets in Resources */,
+				21FD830D1BFDF04E000DAAF0 /* yu2.png in Resources */,
 				213EB4961BFDAA130029AA56 /* Speach2.png in Resources */,
 				213EB47A1BFD5ACE0029AA56 /* bg3.png in Resources */,
 				213EB4791BFD5ACE0029AA56 /* bg2.png in Resources */,
@@ -868,7 +872,7 @@
 				INFOPLIST_FILE = GUIJI_LIFE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = lanou.3g.com.GUIJi;
+				PRODUCT_BUNDLE_IDENTIFIER = lanou.3g.com.GUIJi0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -884,7 +888,7 @@
 				INFOPLIST_FILE = GUIJI_LIFE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = lanou.3g.com.GUIJi;
+				PRODUCT_BUNDLE_IDENTIFIER = lanou.3g.com.GUIJi0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

@@ -130,10 +130,13 @@ static NSString *const cellID = @"cell_ID";
     headerView.backgroundColor = [UIColor clearColor];
     
     UILabel *titleLabel = [[UILabel alloc] init];
-    titleLabel.frame = CGRectMake(80, 0, self.view.frame.size.width - 80, 80);
+
+    titleLabel.frame = CGRectMake( 0, 0, self.view.frame.size.width , 80);
+    titleLabel.font = [UIFont systemFontOfSize:18 weight:8];
     titleLabel.textColor = [UIColor colorWithRed:21 / 255.0 green:147 / 255.0 blue:185 / 255.0 alpha:1];
-    titleLabel.text = [NSString stringWithFormat:@"为你%@日的行程添上一笔",self.date];
+    titleLabel.text = [NSString stringWithFormat:@"%@日行程",self.date];
     titleLabel.textAlignment = NSTextAlignmentCenter;
+
     [headerView addSubview:titleLabel];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -142,6 +145,8 @@ static NSString *const cellID = @"cell_ID";
     [button setTintColor:[UIColor colorWithRed:21 / 255.0 green:147 / 255.0 blue:185 / 255.0 alpha:1]];
     [button addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside];
 
+    button.titleLabel.font = [UIFont systemFontOfSize:18 weight:8];
+    
     [headerView addSubview:button];
     
     return headerView;

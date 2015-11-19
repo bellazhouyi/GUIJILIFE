@@ -86,6 +86,7 @@
                                                     <constraint firstAttribute="height" constant="40" id="FOs-Ym-A10"/>
                                                     <constraint firstAttribute="width" constant="40" id="q36-bN-dza"/>
                                                 </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <state key="normal" title="返回">
                                                     <color key="titleColor" red="0.85490196080000003" green="0.32113399780000002" blue="0.3919888279" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>

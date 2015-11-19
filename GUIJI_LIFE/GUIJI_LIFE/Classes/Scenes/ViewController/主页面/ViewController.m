@@ -551,17 +551,25 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     
     if (self.boundingBox == tableView) {
        
-        return nil;
+        UILabel *titleLabel = [[UILabel alloc] init];
+        titleLabel.frame = CGRectMake(0, 0,self.view.frame.size.width , 80);
+        
+        titleLabel.font = [UIFont systemFontOfSize:18 weight:8];
+        titleLabel.textColor = [UIColor colorWithRed:70 / 255.0 green:130 /255.0 blue:147 / 255.0 alpha:1];
+        titleLabel.textAlignment = NSTextAlignmentCenter;
+        titleLabel.text = @"过去7天日程";
+        return titleLabel;
+
 
     }else{
     
     UILabel *titleLabel = [[UILabel alloc] init];
-    titleLabel.frame = CGRectMake(170, 0,self.view.frame.size.width - 60, 80);
-        
-        titleLabel.font = [UIFont systemFontOfSize:18 weight:8];
+    titleLabel.frame = CGRectMake(0, 0,self.view.frame.size.width , 80);
+
+    titleLabel.font = [UIFont systemFontOfSize:18 weight:8];
     titleLabel.textColor = [UIColor colorWithRed:70 / 255.0 green:130 /255.0 blue:147 / 255.0 alpha:1];
     titleLabel.textAlignment = NSTextAlignmentCenter;
-    titleLabel.text =[NSString stringWithFormat:@"为你%@日的行程添上一笔",self.date];
+    titleLabel.text =[NSString stringWithFormat:@"%@日行程",self.date];
     return titleLabel;
     }
     
@@ -572,7 +580,7 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (self.boundingBox == tableView) {
-        return 0;
+        return 50;
     }else{
     
     return 80;
