@@ -198,7 +198,7 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     self.boundingBox.dataSource = self;
     
     self.boundingBox.showsVerticalScrollIndicator=NO;
-    self.boundingBox.backgroundView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"4"]];
+    self.boundingBox.backgroundView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bg8"]];
     // 添加点击空白或背景收起键盘
     UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
     tapGr.cancelsTouchesInView = NO;

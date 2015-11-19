@@ -50,7 +50,7 @@ static NSString *downCellID = @"cellDown_Identifier";
     self.tableView.transform = CGAffineTransformMakeRotation(-M_PI/2);
     
     // 创建一个imageView
-    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Background.jpg"]];
+    UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bg5"]];
     
     // 将imageView 设置为tableView 的背景视图
     self.tableView.backgroundView = imageView;

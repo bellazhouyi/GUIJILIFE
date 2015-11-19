@@ -14,8 +14,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="354" height="175.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bubble.png" translatesAutoresizingMaskIntoConstraints="NO" id="1lu-Vy-4Jl">
-                        <rect key="frame" x="20" y="0.0" width="30" height="175"/>
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yu1.png" translatesAutoresizingMaskIntoConstraints="NO" id="1lu-Vy-4Jl">
+                        <rect key="frame" x="30" y="0.0" width="30" height="175"/>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -23,11 +23,11 @@
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="5.png" translatesAutoresizingMaskIntoConstraints="NO" id="Qo1-cN-m2p">
-                        <rect key="frame" x="60" y="5" width="284" height="165"/>
+                        <rect key="frame" x="70" y="5" width="274" height="165"/>
                         <animations/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzM-7d-Qvq">
-                        <rect key="frame" x="80" y="5" width="269" height="165.5"/>
+                        <rect key="frame" x="90" y="5" width="259" height="165.5"/>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -36,7 +36,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kql-jX-SZA">
-                        <rect key="frame" x="10" y="10" width="50" height="155"/>
+                        <rect key="frame" x="10" y="10" width="60" height="155"/>
                         <animations/>
                         <color key="tintColor" red="0.85490196080000003" green="0.32113399780000002" blue="0.3919888279" alpha="1" colorSpace="calibratedRGB"/>
                         <state key="normal" title="Button"/>
@@ -45,10 +45,10 @@
                         </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3qV-Tp-LPu">
-                        <rect key="frame" x="65" y="5" width="279" height="165"/>
+                        <rect key="frame" x="75" y="5" width="269" height="165"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="添加时间" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dYt-84-21H">
-                                <rect key="frame" x="0.0" y="0.0" width="279" height="130"/>
+                                <rect key="frame" x="0.0" y="0.0" width="269" height="130"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -61,7 +61,7 @@
                                 </connections>
                             </switch>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NWk-F3-Okc">
-                                <rect key="frame" x="194" y="131" width="80" height="33"/>
+                                <rect key="frame" x="184" y="131" width="80" height="33"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.2828922176" green="0.58236794489999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -75,7 +75,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNg-3J-c4H">
-                                <rect key="frame" x="197" y="130" width="72" height="35"/>
+                                <rect key="frame" x="187" y="130" width="72" height="35"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="tintColor" red="0.2828922176" green="0.58236794489999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -139,7 +139,7 @@
                     <constraint firstItem="3qV-Tp-LPu" firstAttribute="leading" secondItem="Kql-jX-SZA" secondAttribute="trailing" constant="5" id="Cx7-gT-35d"/>
                     <constraint firstItem="3qV-Tp-LPu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Fjv-mQ-ai5"/>
                     <constraint firstItem="dzM-7d-Qvq" firstAttribute="leading" secondItem="Kql-jX-SZA" secondAttribute="trailing" constant="20" id="JgZ-uQ-dMO"/>
-                    <constraint firstItem="1lu-Vy-4Jl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="UOO-Ln-Z6X"/>
+                    <constraint firstItem="1lu-Vy-4Jl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="UOO-Ln-Z6X"/>
                     <constraint firstItem="Kql-jX-SZA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="aJ3-EE-9Xm"/>
                     <constraint firstAttribute="bottom" secondItem="3qV-Tp-LPu" secondAttribute="bottom" constant="5" id="cMX-Dn-bZI"/>
                     <constraint firstAttribute="bottom" secondItem="Kql-jX-SZA" secondAttribute="bottom" constant="10" id="f3P-KP-HNf"/>
@@ -173,6 +173,6 @@
     </objects>
     <resources>
         <image name="5.png" width="299" height="115"/>
-        <image name="bubble.png" width="128" height="128"/>
+        <image name="yu1.png" width="68" height="150"/>
     </resources>
 </document>
