@@ -112,7 +112,7 @@
             [self.appDelegate saveContext];
             //之前在这里数组越界，是因为自己之前的代码，如果是最后一个元素，先在数组中移除了next,后来又要取next,但是next已经被删除了，是找不到对应的，所以报错。
             [arrayMapInfo removeObjectAtIndex:count];
-        }
+        }else{
         for (int next = count+1; next < arrayMapInfo.count ; ) {
             if ([[arrayMapInfo[count] time] isEqualToString:[arrayMapInfo[next] time]]) {
                 
@@ -148,6 +148,7 @@
                 next ++;
             }
         }
+    }
     }
     return arrayMapInfo;
     

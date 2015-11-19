@@ -275,6 +275,9 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
 - (IBAction)backAction:(UIButton *)sender {
     
     
+    // 隐藏TableView
+    _tableView.hidden = YES;
+    
     // 时间轴出现
     _lineView.hidden = NO;
 
@@ -355,6 +358,8 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     // 时间轴转动
     [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         
+        // 隐藏tableView
+        _tableView.hidden = YES;
         
         // 记录初始位置
         _frame = self.lineView.frame;
@@ -371,6 +376,9 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
         
         // 时间轴隐藏
         _lineView.hidden = YES;
+        
+        // 显示TableView
+        _tableView.hidden = NO;
     }];
 
 }
