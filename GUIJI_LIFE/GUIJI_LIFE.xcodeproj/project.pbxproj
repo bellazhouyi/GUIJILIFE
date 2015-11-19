@@ -86,6 +86,7 @@
 		C2993CF71BFAB65E00BEF899 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = C2993CF31BFAB65E00BEF899 /* 4.png */; };
 		C2993CF81BFAB65E00BEF899 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = C2993CF41BFAB65E00BEF899 /* 3.png */; };
 		C2BCD6611BF58F04001AC6A6 /* ClockHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C2BCD6601BF58F04001AC6A6 /* ClockHelper.m */; };
+		C2FB213C1BFDC198002406FC /* 模糊tableView背景图.png in Resources */ = {isa = PBXBuildFile; fileRef = C2FB213B1BFDC198002406FC /* 模糊tableView背景图.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -191,6 +192,7 @@
 		C2993CF41BFAB65E00BEF899 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		C2BCD65F1BF58F04001AC6A6 /* ClockHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClockHelper.h; sourceTree = "<group>"; };
 		C2BCD6601BF58F04001AC6A6 /* ClockHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClockHelper.m; sourceTree = "<group>"; };
+		C2FB213B1BFDC198002406FC /* 模糊tableView背景图.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "模糊tableView背景图.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +250,7 @@
 		213EB4611BFD5ACE0029AA56 /* tu */ = {
 			isa = PBXGroup;
 			children = (
+				C2FB213B1BFDC198002406FC /* 模糊tableView背景图.png */,
 				213EB4931BFDAA130029AA56 /* Speach1.png */,
 				213EB4941BFDAA130029AA56 /* Speach2.png */,
 				213EB4621BFD5ACE0029AA56 /* bg1.png */,
@@ -711,6 +714,7 @@
 				212771F51BF75F4F00965C43 /* NextCell.xib in Resources */,
 				213EB4841BFD5C150029AA56 /* yu.png in Resources */,
 				C26273411BF07034004DE7D4 /* beizhu.txt in Resources */,
+				C2FB213C1BFDC198002406FC /* 模糊tableView背景图.png in Resources */,
 				C26273441BF07034004DE7D4 /* beizhu.txt in Resources */,
 				C26273461BF07034004DE7D4 /* beizhu.txt in Resources */,
 				213EB4801BFD5ACE0029AA56 /* person2.png in Resources */,

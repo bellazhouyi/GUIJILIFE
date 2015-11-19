@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="354" height="176"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="354" height="175.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="354" height="175"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yu1.png" translatesAutoresizingMaskIntoConstraints="NO" id="1lu-Vy-4Jl">
@@ -33,7 +33,7 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dzM-7d-Qvq">
-                        <rect key="frame" x="90" y="5" width="259" height="165.5"/>
+                        <rect key="frame" x="80" y="5" width="259" height="165"/>
                         <animations/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -139,9 +139,9 @@
                 </subviews>
                 <animations/>
                 <constraints>
-                    <constraint firstItem="dzM-7d-Qvq" firstAttribute="leading" secondItem="1lu-Vy-4Jl" secondAttribute="trailing" constant="30" id="300-f5-kYs"/>
+                    <constraint firstItem="dzM-7d-Qvq" firstAttribute="leading" secondItem="1lu-Vy-4Jl" secondAttribute="trailing" constant="20" id="300-f5-kYs"/>
                     <constraint firstItem="Qo1-cN-m2p" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="99S-lN-E50"/>
-                    <constraint firstAttribute="trailing" secondItem="dzM-7d-Qvq" secondAttribute="trailing" constant="5" id="9wE-w9-DVa"/>
+                    <constraint firstAttribute="trailing" secondItem="dzM-7d-Qvq" secondAttribute="trailing" constant="15" id="9wE-w9-DVa"/>
                     <constraint firstItem="3qV-Tp-LPu" firstAttribute="leading" secondItem="Kql-jX-SZA" secondAttribute="trailing" constant="5" id="Cx7-gT-35d"/>
                     <constraint firstItem="3qV-Tp-LPu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Fjv-mQ-ai5"/>
                     <constraint firstItem="dzM-7d-Qvq" firstAttribute="leading" secondItem="Kql-jX-SZA" secondAttribute="trailing" constant="20" id="JgZ-uQ-dMO"/>
@@ -158,7 +158,13 @@
                     <constraint firstAttribute="bottom" secondItem="1lu-Vy-4Jl" secondAttribute="bottom" id="rkv-SE-Ue1"/>
                     <constraint firstItem="Qo1-cN-m2p" firstAttribute="leading" secondItem="1lu-Vy-4Jl" secondAttribute="trailing" constant="10" id="tnZ-Wk-Fiw"/>
                     <constraint firstItem="1lu-Vy-4Jl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="x9P-lE-pvP"/>
+                    <constraint firstItem="3qV-Tp-LPu" firstAttribute="centerX" secondItem="dzM-7d-Qvq" secondAttribute="centerX" id="xRX-no-TwY"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="JgZ-uQ-dMO"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <animations/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

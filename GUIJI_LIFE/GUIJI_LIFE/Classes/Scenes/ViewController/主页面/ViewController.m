@@ -475,7 +475,6 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
         
     [scheduleHelper requestWithDate:self.date];
     
-        NSLog(@"-------%ld",scheduleHelper.scheduleArray.count);
     return  scheduleHelper.scheduleArray.count;
     }
 }
@@ -495,6 +494,8 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
         }
         
         Boxcell.textLabel.text = self.dateAllArray[indexPath.row];
+        Boxcell.textLabel.textColor = [UIColor whiteColor];
+        
         Boxcell.backgroundColor=[UIColor clearColor];
         Boxcell.selectionStyle = UITableViewCellSelectionStyleNone;
         return Boxcell;
@@ -535,7 +536,7 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.boundingBox == tableView) {
-        return 45;
+        return 50;
     }else{
     return 100;
     }

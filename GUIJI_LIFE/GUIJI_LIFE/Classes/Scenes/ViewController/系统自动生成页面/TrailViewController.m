@@ -124,6 +124,13 @@ static NSString *downCellID = @"cellDown_Identifier";
     
     [headerView addSubview:backButton];
     
+    //添加日期
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, 40, 50, self.view.frame.size.height)];
+    label.text = self.date;
+    label.numberOfLines = 0;
+    [headerView addSubview:label];
+    
+    
     return headerView;
 }
 
