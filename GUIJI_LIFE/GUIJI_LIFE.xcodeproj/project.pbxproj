@@ -739,7 +739,7 @@
 				INFOPLIST_FILE = GUIJI_LIFE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = lanou.3g.com.GUIJi0;
+				PRODUCT_BUNDLE_IDENTIFIER = lanou.3g.com.GUIJi00;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -756,7 +756,7 @@
 				INFOPLIST_FILE = GUIJI_LIFE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = lanou.3g.com.GUIJi0;
+				PRODUCT_BUNDLE_IDENTIFIER = lanou.3g.com.GUIJi00;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

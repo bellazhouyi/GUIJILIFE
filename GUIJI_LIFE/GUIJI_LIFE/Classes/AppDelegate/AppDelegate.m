@@ -27,6 +27,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    // 控制闪屏时间
+    [NSThread sleepForTimeInterval:1];
+    
     
     //初始化CLLocationManager属性
     self.locationManager = [[CLLocationManager alloc]init];
