@@ -7,7 +7,6 @@
 //
 
 #import "ScheduleController.h"
-#import "NextCell.h"
 #import "MyCell.h"
 @interface ScheduleController ()<UITextFieldDelegate>
 
@@ -28,7 +27,7 @@ static NSString *const cellID = @"cell_ID";
     
 
     self.tableView.backgroundView = imageView;
-    
+    self.tableView.showsVerticalScrollIndicator = NO;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MyCell" bundle:nil] forCellReuseIdentifier:cellID];
     
