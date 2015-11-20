@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+
+typedef void(^block)();
 @interface TrailViewController : UIViewController
 
 //用于接收日期字符串
@@ -16,5 +18,9 @@
 
 //用于接收动画效果的key值
 @property(nonatomic,strong) NSString *animationKey;
+
+
+//声明block属性
+@property(nonatomic,strong) block block;
 
 @end

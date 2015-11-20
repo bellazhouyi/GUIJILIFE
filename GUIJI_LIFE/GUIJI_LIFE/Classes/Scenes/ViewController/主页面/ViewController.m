@@ -16,7 +16,7 @@
 
 #define KscreenHeight [UIScreen mainScreen].bounds.size.height
 
-typedef void (^block) (void);
+typedef void (^block) ();
 
 @interface ViewController () <UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,ADCircularMenuDelegate>
 {
@@ -672,7 +672,7 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     //制作fade的动画效果
     CATransition *transition = [CATransition animation];
     
-    transition.duration = 0.3;
+    transition.duration = 0.5;
     
     transition.type = @"fade";
     

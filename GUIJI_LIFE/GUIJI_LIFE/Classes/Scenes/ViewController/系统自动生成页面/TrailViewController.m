@@ -67,6 +67,10 @@ static NSString *downCellID = @"cellDown_Identifier";
     //禁止tableView 回弹
 //    self.tableView.bounces = NO;
     
+    __block typeof(self) temp = self;
+    self.block = ^(){
+        [temp.tableView reloadData];
+    };
     
 }
 
@@ -205,8 +209,16 @@ static NSString *downCellID = @"cellDown_Identifier";
 -(void)setDate:(NSString *)date{
     _date = date;
     
-     // 获取数据
-    [self loadData];
+    //子线程中加载数据
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        
+        // 获取数据
+        [self loadData];
+        
+        //数据加载完成，刷新tableView
+        self.block();
+    });
+    
 }
 
 
