@@ -349,7 +349,6 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
         
         
     } completion:^(BOOL finished) {
-        NSLog(@"11动画完成了");
         
         
     }];
@@ -372,7 +371,6 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
         
         
     } completion:^(BOOL finished) {
-        NSLog(@"动画完成了");
         
         // 时间轴隐藏
         _lineView.hidden = YES;
