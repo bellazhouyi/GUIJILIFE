@@ -166,10 +166,44 @@
         
         NSString *time = [dateFormatter stringFromDate:currentDate];
         
-        //存入数据库
-        TrailHelper *trailHelper = [TrailHelper new];
-        [trailHelper saveMapInfoWithTime:time date:date andLocationName:userLocationInfo];
         
+        //判断数据是否有相同的
+        
+        //取出之前数据库中的数据
+        NSArray *guijiArray = [[TrailHelper sharedTrailHelper] filterMapInfoDataByDate:date];
+        
+        TrailHelper *trailHelper = [TrailHelper sharedTrailHelper];
+        
+        if (guijiArray.count == 0) {
+            
+            //存入数据库
+            [trailHelper saveMapInfoWithTime:time date:date andLocationName:userLocationInfo];
+        }else{
+            
+            //当前时间的小时段一样
+            NSString *currentHour = [time substringToIndex:2];
+            
+            BOOL isExist = NO;
+            
+            for (int count = 0; count < guijiArray.count; count ++) {
+                //数组中第count个元素的小时
+                NSString *countHour = [[guijiArray[count] time] substringToIndex:2];
+                
+                //地名为空不存，时间相同不存.整点时间段相同且地名相同的不存
+                if (userLocationInfo == NULL || [[guijiArray[count] time] isEqualToString:time] || ([countHour isEqualToString:currentHour] && [[guijiArray[count] locationName] isEqualToString:userLocationInfo])) {
+                    
+                    isExist = YES;
+                    break;
+                }else{
+                    continue;
+                }
+            }
+            if (isExist == NO) {
+                [trailHelper saveMapInfoWithTime:time date:date andLocationName:userLocationInfo];
+            }
+            
+            
+        }
         
         
     }];
@@ -231,20 +265,6 @@
 #pragma mark -- 处理内存警告问题
 -(void)applicationDidReceiveMemoryWarning:(UIApplication *)application{
     
-    NSDate *date = [NSDate date];
-    
-    NSDateFormatter *formatter = [NSDateFormatter new];
-    
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    
-    NSString *dateStr = [formatter stringFromDate:date];
-    
-    TrailHelper *trailHelper = [TrailHelper sharedTrailHelper];
-    
-    //把数据库中不需要的数据给删除
-    [trailHelper removeDataWithSimpleDataByDate:dateStr];
-    
-    NSLog(@"内存警告");
 }
 
 

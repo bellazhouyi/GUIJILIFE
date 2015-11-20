@@ -24,9 +24,6 @@
 -(void)saveMapInfoWithTime:(NSString *)time date:(NSString *)date andLocationName:(NSString *)locationName;
 
 
-#pragma mark 移除多个相同时间同一地理位置的数据,并返回当前数据库中的数据
--(NSArray *)removeDataWithSimpleDataByDate:(NSString *)date;
-
 
 #pragma mark 根据日期筛选数据
 -(NSArray *)filterMapInfoDataByDate:(NSString *)date;
