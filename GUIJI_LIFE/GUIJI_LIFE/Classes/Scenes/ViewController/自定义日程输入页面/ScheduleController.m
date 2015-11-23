@@ -31,7 +31,17 @@ static NSString *const cellID = @"cell_ID";
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MyCell" bundle:nil] forCellReuseIdentifier:cellID];
     
+    // 添加点击空白或背景收起键盘
+    UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+    tapGr.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapGr];
     
+}
+
+#pragma mark - 点击空白或背景收起键盘
+-(void)viewTapped:(UITapGestureRecognizer*)tapGr
+{
+    [self.view endEditing:YES];
 }
 
 
