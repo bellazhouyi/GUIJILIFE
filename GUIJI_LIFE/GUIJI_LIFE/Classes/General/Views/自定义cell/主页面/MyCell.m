@@ -59,8 +59,8 @@
     }
     // 中文输入法以外的直接对其统计限制即可，不考虑其他语种情况
     else{
-        if (toBeString.length > kMaxLength) {
-            textField.text = [toBeString substringToIndex:kMaxLength];
+        if (toBeString.length > kMaxLength * 2) {
+            textField.text = [toBeString substringToIndex:kMaxLength * 2];
         }
     }
 }

@@ -68,7 +68,7 @@
     if ([[UIApplication sharedApplication]currentUserNotificationSettings].types!=UIUserNotificationTypeNone) {
         
         
-        //从家赫那个页面---数据库中有isClock这么一个Bool，表示是否有闹钟提醒
+        //从Mycell页面---数据库中有isClock这么一个Bool，表示是否有闹钟提醒
         //用通知传值--关于时间的形参，调用addLocalNotificationWithTime方法
         //接收通知
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startClock:) name:@"clock" object:nil];
