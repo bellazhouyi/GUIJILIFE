@@ -112,9 +112,6 @@
 
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     
-    NSDateComponents *comps = nil;
-    
-    comps = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:date];
     
     
     //Circular menu buttons

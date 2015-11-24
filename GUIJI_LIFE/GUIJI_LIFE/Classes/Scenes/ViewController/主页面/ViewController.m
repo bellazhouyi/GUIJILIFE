@@ -109,12 +109,6 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
     
-    NSDateComponents *comps = nil;
-    
-    comps = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:date];
-    
-    // 前一天的时间
-    comps = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:lastDay];
     
     // 获取当天日期
     self.date = [formatter stringFromDate:date];

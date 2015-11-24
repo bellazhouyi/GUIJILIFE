@@ -73,11 +73,11 @@
     NSDate *currentDate = [NSDate date];
     
     NSCalendar *currentCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSDateComponents *currentComps = [[NSDateComponents alloc] init];
+//    NSDateComponents *currentComps = [[NSDateComponents alloc] init];
     
     NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitWeekday | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
     
-    currentComps = [currentCalendar components:unitFlags fromDate:currentDate];
+   NSDateComponents * currentComps = [currentCalendar components:unitFlags fromDate:currentDate];
     
     //设置当天的某个点
     NSDateComponents *resultComps = [[NSDateComponents alloc] init];

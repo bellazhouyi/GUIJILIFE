@@ -58,7 +58,7 @@
     [self.locationManager startUpdatingLocation];
     
     //设置更新间距
-    self.locationManager.distanceFilter = 200;
+    self.locationManager.distanceFilter = 500;
     
     //设置定位精度
     [_locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
@@ -131,11 +131,11 @@
         //存储用户位置和当前时间到数据库中
         [self saveCurrentLoaction:locations];
         
-        UIBackgroundTaskIdentifier bgTask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
-            
-            [[UIApplication sharedApplication] endBackgroundTask:bgTask];
-            
-        }];
+//        UIBackgroundTaskIdentifier bgTask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+//            
+//            [[UIApplication sharedApplication] endBackgroundTask:bgTask];
+//            
+//        }];
         
     }
     
