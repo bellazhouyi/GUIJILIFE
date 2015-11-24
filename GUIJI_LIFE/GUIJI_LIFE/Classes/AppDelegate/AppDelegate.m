@@ -58,7 +58,7 @@
     [self.locationManager startUpdatingLocation];
     
     //设置更新间距
-    self.locationManager.distanceFilter = 1;
+    self.locationManager.distanceFilter = 200;
     
     //设置定位精度
     [_locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
