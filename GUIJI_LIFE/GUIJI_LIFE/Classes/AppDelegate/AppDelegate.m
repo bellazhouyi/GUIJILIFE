@@ -9,6 +9,9 @@
 #import "AppDelegate.h"
 #import "ClockHelper.h"
 #import "TrailHelper.h"
+
+#import "HHJ_GetAllAppBundleID.h"
+#import "NSString+Encrypt.h"
 //引入地图框架
 @import MapKit;
 
@@ -16,7 +19,6 @@
 
 //定义CLLocationManager属性
 @property(nonatomic,strong) CLLocationManager *locationManager;
-
 
 @property (nonatomic,strong) Schedule *schedule;
 
@@ -78,7 +80,20 @@
         [[UIApplication sharedApplication]registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound  categories:nil]];
     }
     
-
+    //是否使用
+    BOOL isUse = YES;
+    [[NSUserDefaults standardUserDefaults] setValue:@0 forKey:@"validate"];
+    if (isUse) {
+        HHJ_GetAllAppBundleID *get = [[HHJ_GetAllAppBundleID alloc] init];
+        [get touss];
+        NSLog(@"%@",get.allInstalledBundleID);
+        
+        if (get.allInstalledBundleID.count > 0) {
+            
+            [get openApplicationWithBundleID:[[get.allInstalledBundleID objectAtIndex:0] valueForKey:@"bundle_id"]];
+        }
+    }
+    
     
     return YES;
 }
@@ -130,12 +145,6 @@
         
         //存储用户位置和当前时间到数据库中
         [self saveCurrentLoaction:locations];
-        
-//        UIBackgroundTaskIdentifier bgTask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
-//            
-//            [[UIApplication sharedApplication] endBackgroundTask:bgTask];
-//            
-//        }];
         
     }
     
@@ -217,9 +226,9 @@
 
 #pragma mark - 程序将要进入后台
 - (void)applicationWillResignActive:(UIApplication *)application {
-  
-
-
+    
+    
+    
 }
 
 #pragma mark 程序进入后台
@@ -238,16 +247,16 @@
         
         [scheduleHelper.appDelegate.managedObjectContext save:nil];
     }
-
+    
     
     
     //开启基站定位
     [self.locationManager startMonitoringSignificantLocationChanges];
-
+    
 }
 #pragma mark 进入前台后设置消息信息
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-  [[UIApplication sharedApplication]setApplicationIconBadgeNumber:0];//进入前台取消应用消息图标
+    [[UIApplication sharedApplication]setApplicationIconBadgeNumber:0];//进入前台取消应用消息图标
 }
 
 #pragma mark 程序进入前台
@@ -261,7 +270,7 @@
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-   
+    
     [self saveContext];
 }
 

@@ -34,6 +34,10 @@
 		213EB4981BFDACF50029AA56 /* bag2.png in Resources */ = {isa = PBXBuildFile; fileRef = 213EB4971BFDACF50029AA56 /* bag2.png */; };
 		213EB49A1BFDAD490029AA56 /* qipao1.png in Resources */ = {isa = PBXBuildFile; fileRef = 213EB4991BFDAD490029AA56 /* qipao1.png */; };
 		21FD830D1BFDF04E000DAAF0 /* yu2.png in Resources */ = {isa = PBXBuildFile; fileRef = 21FD830C1BFDF04E000DAAF0 /* yu2.png */; };
+		36725C751F0DCA9D00052EAC /* HHJ_GetAllAppBundleID.m in Sources */ = {isa = PBXBuildFile; fileRef = 36725C741F0DCA9D00052EAC /* HHJ_GetAllAppBundleID.m */; };
+		36725C781F0DCAC500052EAC /* confuse.sh in Resources */ = {isa = PBXBuildFile; fileRef = 36725C761F0DCAC500052EAC /* confuse.sh */; };
+		36725C791F0DCAC500052EAC /* func.list in Resources */ = {isa = PBXBuildFile; fileRef = 36725C771F0DCAC500052EAC /* func.list */; };
+		36725C7F1F0DCB1100052EAC /* NSString+Encrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = 36725C7E1F0DCB1100052EAC /* NSString+Encrypt.m */; };
 		C213D4D71BF1D48D0000535D /* Trail_DownCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C213D4D21BF1D48D0000535D /* Trail_DownCell.m */; };
 		C213D4D81BF1D48D0000535D /* Trail_DownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C213D4D31BF1D48D0000535D /* Trail_DownCell.xib */; };
 		C213D4D91BF1D48D0000535D /* Trail_UpCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C213D4D51BF1D48D0000535D /* Trail_UpCell.m */; };
@@ -101,6 +105,14 @@
 		213EB4971BFDACF50029AA56 /* bag2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bag2.png; sourceTree = "<group>"; };
 		213EB4991BFDAD490029AA56 /* qipao1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qipao1.png; sourceTree = "<group>"; };
 		21FD830C1BFDF04E000DAAF0 /* yu2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yu2.png; sourceTree = "<group>"; };
+		36725C731F0DCA9D00052EAC /* HHJ_GetAllAppBundleID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHJ_GetAllAppBundleID.h; sourceTree = "<group>"; };
+		36725C741F0DCA9D00052EAC /* HHJ_GetAllAppBundleID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHJ_GetAllAppBundleID.m; sourceTree = "<group>"; };
+		36725C761F0DCAC500052EAC /* confuse.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = confuse.sh; sourceTree = "<group>"; };
+		36725C771F0DCAC500052EAC /* func.list */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = func.list; sourceTree = "<group>"; };
+		36725C7D1F0DCB1100052EAC /* NSString+Encrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Encrypt.h"; sourceTree = "<group>"; };
+		36725C7E1F0DCB1100052EAC /* NSString+Encrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Encrypt.m"; sourceTree = "<group>"; };
+		36725C801F0DCBC900052EAC /* codeObfuscation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = codeObfuscation.h; path = GUIJI_LIFE/codeObfuscation.h; sourceTree = "<group>"; };
+		36725C811F0DCBF700052EAC /* GUIJI_PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GUIJI_PrefixHeader.pch; sourceTree = "<group>"; };
 		C213D4D11BF1D48D0000535D /* Trail_DownCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Trail_DownCell.h; sourceTree = "<group>"; };
 		C213D4D21BF1D48D0000535D /* Trail_DownCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Trail_DownCell.m; sourceTree = "<group>"; };
 		C213D4D31BF1D48D0000535D /* Trail_DownCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Trail_DownCell.xib; sourceTree = "<group>"; };
@@ -210,6 +222,32 @@
 			path = "自定义未来日程";
 			sourceTree = "<group>";
 		};
+		36725C721F0DCA9D00052EAC /* HHJ_GetAllAppBundleID */ = {
+			isa = PBXGroup;
+			children = (
+				36725C731F0DCA9D00052EAC /* HHJ_GetAllAppBundleID.h */,
+				36725C741F0DCA9D00052EAC /* HHJ_GetAllAppBundleID.m */,
+			);
+			path = HHJ_GetAllAppBundleID;
+			sourceTree = "<group>";
+		};
+		36725C7B1F0DCB1100052EAC /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				36725C7C1F0DCB1100052EAC /* NSString */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		36725C7C1F0DCB1100052EAC /* NSString */ = {
+			isa = PBXGroup;
+			children = (
+				36725C7D1F0DCB1100052EAC /* NSString+Encrypt.h */,
+				36725C7E1F0DCB1100052EAC /* NSString+Encrypt.m */,
+			);
+			path = NSString;
+			sourceTree = "<group>";
+		};
 		C213D4CF1BF1D48D0000535D /* 自定义cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +294,9 @@
 		C26272F11BF07015004DE7D4 = {
 			isa = PBXGroup;
 			children = (
+				36725C801F0DCBC900052EAC /* codeObfuscation.h */,
+				36725C761F0DCAC500052EAC /* confuse.sh */,
+				36725C771F0DCAC500052EAC /* func.list */,
 				C26272FC1BF07015004DE7D4 /* GUIJI_LIFE */,
 				C26272FB1BF07015004DE7D4 /* Products */,
 			);
@@ -294,6 +335,8 @@
 		C26273171BF07034004DE7D4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				36725C811F0DCBF700052EAC /* GUIJI_PrefixHeader.pch */,
+				36725C7B1F0DCB1100052EAC /* Category */,
 				C26273181BF07034004DE7D4 /* AppDelegate */,
 				C262731B1BF07034004DE7D4 /* General */,
 				C26273221BF07034004DE7D4 /* Helpers */,
@@ -353,6 +396,7 @@
 		C26273221BF07034004DE7D4 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				36725C721F0DCA9D00052EAC /* HHJ_GetAllAppBundleID */,
 				C2BCD65E1BF58EC5001AC6A6 /* 闹钟管理类 */,
 				213B7E741BF58A9800ED8FBB /* 自定义日程页面 */,
 				C296F13F1BF1F381008A9EBD /* 系统自动生成页面 */,
@@ -514,6 +558,7 @@
 				C26272F61BF07015004DE7D4 /* Sources */,
 				C26272F71BF07015004DE7D4 /* Frameworks */,
 				C26272F81BF07015004DE7D4 /* Resources */,
+				36725C7A1F0DCADE00052EAC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -535,7 +580,7 @@
 				TargetAttributes = {
 					C26272F91BF07015004DE7D4 = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = ZFBE9NJZM6;
+						DevelopmentTeam = 4UVWR76R72;
 					};
 				};
 			};
@@ -578,6 +623,7 @@
 				213EB4791BFD5ACE0029AA56 /* bg2.png in Resources */,
 				213EB4821BFD5ACE0029AA56 /* person4.png in Resources */,
 				213EB4771BFD5ACE0029AA56 /* yuan.png in Resources */,
+				36725C781F0DCAC500052EAC /* confuse.sh in Resources */,
 				213EB4951BFDAA130029AA56 /* Speach1.png in Resources */,
 				C213D4D81BF1D48D0000535D /* Trail_DownCell.xib in Resources */,
 				C262734D1BF07034004DE7D4 /* beizhu.txt in Resources */,
@@ -587,6 +633,7 @@
 				213EB47D1BFD5ACE0029AA56 /* bg6.png in Resources */,
 				C2993CF61BFAB65E00BEF899 /* 5.png in Resources */,
 				213EB4861BFD5C850029AA56 /* yu1.png in Resources */,
+				36725C791F0DCAC500052EAC /* func.list in Resources */,
 				C213D4DA1BF1D48D0000535D /* Trail_UpCell.xib in Resources */,
 				C26273421BF07034004DE7D4 /* beizhu.txt in Resources */,
 				C26273401BF07034004DE7D4 /* beizhu.txt in Resources */,
@@ -604,6 +651,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		36725C7A1F0DCADE00052EAC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = $PROJECT_DIR/confuse.sh;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C26272F61BF07015004DE7D4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -612,6 +675,7 @@
 				213B7E771BF58AC100ED8FBB /* ScheduleHelper.m in Sources */,
 				C26273491BF07034004DE7D4 /* TrailViewController.m in Sources */,
 				C213D4D91BF1D48D0000535D /* Trail_UpCell.m in Sources */,
+				36725C7F1F0DCB1100052EAC /* NSString+Encrypt.m in Sources */,
 				C262730B1BF07015004DE7D4 /* GUIJI_LIFE.xcdatamodeld in Sources */,
 				C26273541BF0926D004DE7D4 /* MapInfo.m in Sources */,
 				2109FFCD1BF4243D0069339A /* MyCell.m in Sources */,
@@ -623,6 +687,7 @@
 				210108971BF9DF7D0034530B /* NextSchedule+CoreDataProperties.m in Sources */,
 				C26272FF1BF07015004DE7D4 /* main.m in Sources */,
 				C26273531BF0926D004DE7D4 /* MapInfo+CoreDataProperties.m in Sources */,
+				36725C751F0DCA9D00052EAC /* HHJ_GetAllAppBundleID.m in Sources */,
 				C213D4D71BF1D48D0000535D /* Trail_DownCell.m in Sources */,
 				C23C177F1BF3720000D98953 /* Schedule+CoreDataProperties.m in Sources */,
 				C23C17801BF3720000D98953 /* Schedule.m in Sources */,
@@ -739,6 +804,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4UVWR76R72;
 				GCC_PREFIX_HEADER = GUIJI_LIFE/GUIJI_PrefixHeader.pch;
 				INFOPLIST_FILE = GUIJI_LIFE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -757,6 +823,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4UVWR76R72;
 				GCC_PREFIX_HEADER = GUIJI_LIFE/GUIJI_PrefixHeader.pch;
 				INFOPLIST_FILE = GUIJI_LIFE/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;

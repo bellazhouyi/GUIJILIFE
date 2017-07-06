@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>U轨迹</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -25,7 +27,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Yes</string>
+	<string>为了更加实时的记录您每日走过的痕迹，UU轨迹需要后台获取您的位置信息</string>
 	<key>UIApplicationExitsOnSuspend</key>
 	<false/>
 	<key>UIApplicationExitsOnSuspend - 2</key>

@@ -7,8 +7,13 @@
 //
 
 #import "TrailViewController.h"
+
+@import MapKit;
+
 #import "Trail_UpCell.h"
 #import "Trail_DownCell.h"
+
+
 @interface TrailViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 // UITableView 的实例
@@ -65,7 +70,7 @@ static NSString *downCellID = @"cellDown_Identifier";
     self.tableView.separatorStyle = UITableViewCellSelectionStyleNone;
     
     //禁止tableView 回弹
-//    self.tableView.bounces = NO;
+    //    self.tableView.bounces = NO;
     
     __block typeof(self) temp = self;
     self.block = ^(){
@@ -83,7 +88,7 @@ static NSString *downCellID = @"cellDown_Identifier";
     NSString *specifiedDate = self.date;
     
     self.arrayMapInfo = [NSMutableArray arrayWithArray:[trailHelper filterMapInfoDataByDate:specifiedDate]];
- 
+    
     
 }
 
@@ -113,14 +118,20 @@ static NSString *downCellID = @"cellDown_Identifier";
     
     //添加日期
     CGFloat lableY = tableView.center.y;
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0,lableY - 25, 50, 50)];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0,lableY - 25, 40, 40)];
     label.text = self.date;
     label.numberOfLines = 0;
     [headerView addSubview:label];
     
+    UIButton *launchLocationServerButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 100, 40, 40)];
+    [launchLocationServerButton setImage:[UIImage imageNamed:@"gps"] forState:UIControlStateNormal];
+    launchLocationServerButton.userInteractionEnabled = YES;
+    [launchLocationServerButton addTarget:self action:@selector(launchLocationServerSetting) forControlEvents:UIControlEventTouchUpInside];
+    [headerView addSubview:launchLocationServerButton];
     
     return headerView;
 }
+
 
 #pragma mark 返回按钮的返回事件
 -(void)backAction:(UIButton *)sender{
@@ -138,7 +149,11 @@ static NSString *downCellID = @"cellDown_Identifier";
         
     }
 }
-
+#pragma mark launchLocationServerSetting
+- (void)launchLocationServerSetting {
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+}
 
 #pragma mark - 设置cell 的行数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -165,7 +180,7 @@ static NSString *downCellID = @"cellDown_Identifier";
         NSString *message = [NSString stringWithFormat:@"%@ -> %@",upMapInfo.time,upMapInfo.locationName];
         
         upCell.UPLabel.text = message;
-       
+        
         
         
         return upCell;
@@ -181,12 +196,12 @@ static NSString *downCellID = @"cellDown_Identifier";
         //把数据填充到upCell上
         MapInfo *downMapInfo = self.arrayMapInfo[indexPath.row];
         
-
+        
         NSString *message = [NSString stringWithFormat:@"%@ -> %@",downMapInfo.time,downMapInfo.locationName];
         
         downCell.DownLabel.text = message;
         
-
+        
         
         return downCell;
     }
