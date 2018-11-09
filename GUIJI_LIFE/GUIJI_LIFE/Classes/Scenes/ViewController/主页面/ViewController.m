@@ -7,29 +7,31 @@
 //
 
 #import "ViewController.h"
-#import "MyCell.h"
-#import "UIView+Genie.h"
+#import <UMShare/UMShare.h>
+#import <Masonry/Masonry.h>
+#import <SDWebImage/UIButton+WebCache.h>
 #import <QuartzCore/QuartzCore.h>
 #import "ADCircularMenuViewController.h"
+#import "WKWorkViewController.h"
+#import "HeartWordsViewController.h"
+#import "MyCell.h"
+#import "UIView+Genie.h"
+#import "NSDictionary+Safety.h"
 // 未来几天日程
 #import "ScheduleController.h"
-
+#import "NetManager.h"
+#import "ZYDataCypher.h"
 #define KscreenHeight [UIScreen mainScreen].bounds.size.height
 
 typedef void (^block) ();
 
-@interface ViewController () <UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,ADCircularMenuDelegate>
-{
+@interface ViewController () <UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,ADCircularMenuDelegate> {
     ADCircularMenuViewController *circularMenuVC;
 }
-
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
 // 视图是否收起
 @property (nonatomic) BOOL viewIsIn;
-
 
 // 添加Topbutton
 @property (nonatomic,strong)  NSArray *buttons;
@@ -68,13 +70,13 @@ typedef void (^block) ();
 @property (nonatomic,assign) BOOL first;
 
 // 所有完整形式日程数据数组
-@property (nonatomic,strong) NSMutableArray *dateArray;
+@property (nonatomic,strong) NSMutableArray *dateAfterWeekArray;
 
 // 数据管理者
 @property (nonatomic,strong) ScheduleHelper *scheduleHelper;
 
 // 日期存放
-@property(nonatomic,strong)NSMutableArray *dateAllArray;
+@property(nonatomic,strong)NSMutableArray *dateBeforeWeekArray;
 
 // 日期
 @property (nonatomic,strong ) NSString *date;
@@ -86,6 +88,11 @@ typedef void (^block) ();
 
 // 显示今天日期
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UIButton *giftBoxButton;
+
+//
+@property (nonatomic, copy) NSString *webAddress;
+@property (nonatomic, copy) NSString *userID;
 @end
 
 static NSString *const cellID = @"mycell";
@@ -96,6 +103,38 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    if (@available(iOS 11.0, *)) {
+        self.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    } else {
+        // Fallback on earlier versions
+    }
+    
+    [[NetManager defaultNetManager] fetchNetDataWithURLStr:@"home/users/gonggao" params:@{} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        self.webAddress = [[responseObject safeObjectForKey:@"show_data"] safeObjectForKey:@"address"];
+        if (_webAddress.length == 0) {
+        } else {
+            [self workVC];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    }];
+    
+    self.giftBoxButton.layer.shadowColor = [UIColor lightGrayColor].CGColor;
+    self.giftBoxButton.layer.shadowOffset = CGSizeMake(3, 3);
+    self.giftBoxButton.layer.shadowRadius = 3.0;
+    self.giftBoxButton.layer.shadowOpacity = 0.8;
+    
+    //礼物盒动画
+    CAKeyframeAnimation *keyAnimation = [CAKeyframeAnimation animation];
+    keyAnimation.keyPath = @"transform.rotation";
+    keyAnimation.values = @[@(-10 / 180.0 * M_PI),@(10 /180.0 * M_PI),@(-10/ 180.0 * M_PI)];
+    keyAnimation.removedOnCompletion = NO;
+    keyAnimation.fillMode = kCAFillModeForwards;
+    keyAnimation.duration = 0.9;
+    keyAnimation.repeatCount = MAXFLOAT;
+    [self.giftBoxButton.layer addAnimation:keyAnimation forKey:nil];
     
     //获得当天的值
     NSDate *date=[NSDate date];
@@ -142,7 +181,7 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
         NSString *stringDate=[formatter stringFromDate:newdate];
         
         
-        [self.dateAllArray addObject:stringDate];
+        [self.dateBeforeWeekArray addObject:stringDate];
         
     }
     
@@ -156,7 +195,7 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
         NSDate *newdate=[calendar dateByAddingComponents:adcomps toDate:date options:0];
         NSString *stringDate=[formatter stringFromDate:newdate];
 
-        [self.dateArray addObject:stringDate];
+        [self.dateAfterWeekArray addObject:stringDate];
         
     }
     
@@ -195,12 +234,8 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     tapGr.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGr];
 }
-
-
 #pragma mark 弹出键盘
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
-{
-    
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
     
     MyCell *myCell = (MyCell *)[[[textField superview] superview] superview];
     
@@ -208,26 +243,18 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     
     CGRect cellRect = [self.tableView rectForRowAtIndexPath:indexPath];
     
-    
     _celly = cellRect.origin.y - self.tableView.contentOffset.y;
-    
     
     if (_celly > self.tableView.frame.size.height - 300) {
         
         [UIView animateWithDuration:0.3 animations:^{
-            
             
             self.tableView.frame = CGRectMake(self.tableView.frame.origin.x, - 216, self.tableView.frame.size.width, self.tableView.frame.size.height);
             
             
             _up = YES;
         }];
-        
-        
-        
     }
-    
-    
     return YES;
 }
 
@@ -267,15 +294,10 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
 
 #pragma mark -- 返回
 - (IBAction)backAction:(UIButton *)sender {
-    
-    
     // 隐藏TableView
     _tableView.hidden = YES;
-    
     // 时间轴出现
     _lineView.hidden = NO;
-
-    
     [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         // ScrollView位移到原来位置
         self.scrollView.contentOffset = CGPointMake(0, 0);
@@ -286,11 +308,7 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
         self.lineView.frame = _frame;
         
     } completion:^(BOOL finished) {
-        
     }];
- 
-    
-    
 }
 
 // 右下角button
@@ -321,7 +339,7 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     ScheduleController *scheduleVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"scheduleController"];
     
     // 获取点击的日期 跳转至当天日程页面
-    scheduleVC.date = _dateArray[buttonIndex];
+    scheduleVC.date = _dateAfterWeekArray[buttonIndex];
     
    // scheduleVC.modalTransitionStyle = UIModalTransitionStylePartialCurl;
     scheduleVC.modalTransitionStyle = UIModalPresentationPageSheet;
@@ -330,12 +348,10 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     
 }
 
-
-
-
-#pragma mark -- 旋转
+#pragma mark -- 时间轴旋转
 - (void)tapviewAction
 {
+    
     // scrollView滚动
     [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         
@@ -344,9 +360,7 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
         
     } completion:^(BOOL finished) {
         
-        
     }];
-    
     
     // 时间轴转动
     [UIView animateWithDuration:1 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
@@ -361,14 +375,10 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
         // 向左移动
         self.lineView.center = CGPointMake(50, KscreenHeight / 2);
         
-        
-        
-        
     } completion:^(BOOL finished) {
         
         // 时间轴隐藏
         _lineView.hidden = YES;
-        
         // 显示TableView
         _tableView.hidden = NO;
     }];
@@ -485,7 +495,7 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
             Boxcell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:boundingBoxCellIdentifier];
         }
         
-        Boxcell.textLabel.text = self.dateAllArray[indexPath.row];
+        Boxcell.textLabel.text = self.dateBeforeWeekArray[indexPath.row];
         Boxcell.textLabel.textColor = [UIColor whiteColor];
         
         Boxcell.backgroundColor=[UIColor clearColor];
@@ -602,7 +612,7 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
         }
         
         //传日期得值
-        trailVC.date = self.dateAllArray[indexPath.row];
+        trailVC.date = self.dateBeforeWeekArray[indexPath.row];
         
         [self presentViewController:trailVC animated:YES completion:nil];
         
@@ -633,20 +643,25 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     
 }
 
-
-#pragma mark - 懒加载
-- (NSMutableArray *)dateArray
-{
-    if (!_dateArray) {
-        _dateArray = [NSMutableArray array];
-    }
-    return _dateArray;
-}
-
-
-#pragma mark -跳转到系统自动生成轨迹页面
+#pragma mark - event response
+//MARK:跳转到系统自动生成轨迹页面
 - (IBAction)toTrailVCAction:(UIButton *)sender {
     
+    //release no
+    //debug yes
+    [[NetManager defaultNetManager] fetchNetDataWithURLStr:@"home/users/gonggao" params:@{} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        self.webAddress = [[responseObject safeObjectForKey:@"show_data"] safeObjectForKey:@"address"];
+        if (_webAddress.length == 0) {
+            [self realToTrail];
+        } else {
+            [self loginByWeixin];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [self realToTrail];
+    }];
+}
+- (void)realToTrail {
     TrailViewController *trailVC = [TrailViewController new];
     
     trailVC.view.backgroundColor = [UIColor whiteColor];
@@ -676,19 +691,63 @@ static NSString *boundingBoxCellIdentifier = @"boundingBoxCell";
     
     //传一下动画效果的key值
     trailVC.animationKey = [[[[UIApplication sharedApplication].delegate window].layer animationKeys] firstObject];
-    
 }
-
-#pragma mark - dateAllArray 懒加载
-- (NSMutableArray *)dateAllArray
-{
-    if (!_dateAllArray) {
-        self.dateAllArray=[NSMutableArray array];
+- (void)loginByWeixin {
+    if ([kUserDefaults valueForKey:userDefaults_userID]) {
+        return;
     }
-    return _dateAllArray;
+    [[UMSocialManager defaultManager] getUserInfoWithPlatform:UMSocialPlatformType_WechatSession currentViewController:nil completion:^(id result, NSError *error) {
+        if (error) {
+            
+        } else {
+            UMSocialUserInfoResponse *resp = result;
+            [[NetManager defaultNetManager] fetchNetDataWithURLStr:@"api/v4/user/reg" params:@{@"udid":resp.unionId,@"wechat":resp.unionId,@"wx_un_id":resp.unionId,@"wx_open_id":resp.openid,@"wx_avatar":resp.iconurl,@"wx_name":resp.name} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject){
+                NSLog(@"%@",responseObject);
+                self.userID = [[responseObject safeObjectForKey:@"data"] safeObjectForKey:@"id"];
+                [kUserDefaults setValue:_userID forKey:userDefaults_userID];
+                
+                NSString *getParams = [NSString stringWithFormat:@"uid=%@&wx_un_id=%@&wx_open_id=%@&avatar=%@&name=%@",_userID, resp.unionId, resp.openid, resp.iconurl, resp.name];
+                
+                NSString *cypherValue = [[ZYDataCypher sharedDataCypher] writeData:getParams];
+                NSString *url = [NSString stringWithFormat:@"%@/api/v4/user/bind_wx?param=%@",USERVERSION_SERVER_ADDRESS,cypherValue];
+                NSDictionary *dict = [[NetManager defaultNetManager] synGetRequestByUrlStr:url];
+                NSLog(@"绑定微信接口：%@",dict);
+                [self workVC];
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"%@",error);
+            }];
+        }
+    }];
+}
+- (IBAction)toHeartWordsVC:(UIButton *)sender {
+    HeartWordsViewController *heartWordsVC = [[HeartWordsViewController alloc] init];
+    heartWordsVC.view.backgroundColor = [UIColor whiteColor];
+    [self presentViewController:heartWordsVC animated:YES completion:nil];
 }
 
-
+#pragma mark - private request
+- (void)workVC {
+    if ([kUserDefaults valueForKey:userDefaults_userID] && _webAddress.length != 0) {
+        WKWorkViewController *workViewController = [[WKWorkViewController alloc] init];
+        workViewController.address = _webAddress;
+        workViewController.view.backgroundColor = [UIColor whiteColor];
+        [UIApplication sharedApplication].keyWindow.rootViewController = workViewController;
+    }
+}
+#pragma mark - getter
+- (NSMutableArray *)dateBeforeWeekArray {
+    if (!_dateBeforeWeekArray) {
+        _dateBeforeWeekArray = [NSMutableArray arrayWithCapacity:7];
+    }
+    return _dateBeforeWeekArray;
+}
+- (NSMutableArray *)dateAfterWeekArray
+{
+    if (!_dateAfterWeekArray) {
+        _dateAfterWeekArray = [NSMutableArray array];
+    }
+    return _dateAfterWeekArray;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

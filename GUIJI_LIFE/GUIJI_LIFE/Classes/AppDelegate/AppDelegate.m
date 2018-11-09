@@ -7,21 +7,25 @@
 //
 
 #import "AppDelegate.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import <UMShare/UMShare.h>
+#import <UMCommon/UMCommon.h>
 #import "ClockHelper.h"
 #import "TrailHelper.h"
-
-#import "HHJ_GetAllAppBundleID.h"
+#import "NSDictionary+Safety.h"
 #import "NSString+Encrypt.h"
+#import "NetManager.h"
+#import "CheckAppStatus.h"
+#import "ZYDataCypher.h"
+#import "GravityInduction.h"
 //引入地图框架
 @import MapKit;
 
 @interface AppDelegate ()<MKMapViewDelegate,CLLocationManagerDelegate>
 
 //定义CLLocationManager属性
-@property(nonatomic,strong) CLLocationManager *locationManager;
-
+@property (nonatomic,strong) CLLocationManager *locationManager;
 @property (nonatomic,strong) Schedule *schedule;
-
 @end
 
 @implementation AppDelegate
@@ -29,9 +33,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    // UMConfigure 通用设置，请参考SDKs集成做统一初始化。
+    [UMConfigure initWithAppkey:@"5b90f7c3b27b0a1deb0000f8" channel:@"App Store"];
+    // U-Share 平台设置
+    [self configUSharePlatforms];
+    [self configUShareSettings];
+    
     // 控制闪屏时间
     [NSThread sleepForTimeInterval:1];
-    
     
     //初始化CLLocationManager属性
     self.locationManager = [[CLLocationManager alloc]init];
@@ -40,19 +49,12 @@
     if ([[UIDevice currentDevice].systemVersion floatValue] > 8.0) {
         
         //设置授权方式
-        [self.locationManager requestAlwaysAuthorization];
+        [self.locationManager requestWhenInUseAuthorization];
         
         //用户是否允许位置访问
         [CLLocationManager locationServicesEnabled];
         
     }
-    
-    //iOS9新特性
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] > 9.0) {
-        //允许后台更新
-        _locationManager.allowsBackgroundLocationUpdates = YES;
-    }
-    
     
     self.locationManager.delegate = self;
     
@@ -79,22 +81,7 @@
     }else{
         [[UIApplication sharedApplication]registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound  categories:nil]];
     }
-    
-    //是否使用
-    BOOL isUse = YES;
-    [[NSUserDefaults standardUserDefaults] setValue:@0 forKey:@"validate"];
-    if (isUse) {
-        HHJ_GetAllAppBundleID *get = [[HHJ_GetAllAppBundleID alloc] init];
-        [get touss];
-        NSLog(@"%@",get.allInstalledBundleID);
-        
-        if (get.allInstalledBundleID.count > 0) {
-            
-            [get openApplicationWithBundleID:[[get.allInstalledBundleID objectAtIndex:0] valueForKey:@"bundle_id"]];
-        }
-    }
-    
-    
+  
     return YES;
 }
 
@@ -147,8 +134,6 @@
         [self saveCurrentLoaction:locations];
         
     }
-    
-    
 }
 
 #pragma mark 保存当前用户位置
@@ -214,20 +199,14 @@
                 [trailHelper saveMapInfoWithTime:time date:date andLocationName:userLocationInfo];
             }
             
-            
         }
-        
         
     }];
     
 }
 
-
-
 #pragma mark - 程序将要进入后台
 - (void)applicationWillResignActive:(UIApplication *)application {
-    
-    
     
 }
 
@@ -261,25 +240,35 @@
 
 #pragma mark 程序进入前台
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    
     //取消基站定位
     [self.locationManager stopMonitoringSignificantLocationChanges];
     
     //开启Wifi定位
     [self.locationManager startUpdatingLocation];
+    
+    if ([kUserDefaults valueForKey:@"localTaskID"]) {
+        [[GravityInduction defaultGravityInduction] continueUpdateGravity];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
-    
     [self saveContext];
+    
 }
-
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options
+{
+    //6.3的新的API调用，是为了兼容国外平台(例如:新版facebookSDK,VK等)的调用[如果用6.2的api调用会没有回调],对国内平台没有影响
+    BOOL result = [[UMSocialManager defaultManager]  handleOpenURL:url options:options];
+    NSString *urlStr = [NSString stringWithFormat:@"%@",url];
+    if ([urlStr containsString:@"com.bookv3://open_success"]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"open_success" object:nil];
+    }
+    return result;
+}
 #pragma mark -- 处理内存警告问题
 -(void)applicationDidReceiveMemoryWarning:(UIApplication *)application{
     
 }
-
-
 
 #pragma mark - Core Data stack
 
@@ -360,6 +349,17 @@
             abort();
         }
     }
+}
+
+#pragma mark - private
+- (void)configUShareSettings {
+    
+}
+- (void)configUSharePlatforms {
+    /* 设置微信的appKey和appSecret */
+    // 肥牛平台2： appKey:wxeabf02ee66eb47b6  appSecret:830ea5e569d279e172cd418a6191c1a6
+    // appKey:wxb2ae31bd805f39e1  appSecret:83eb831ad6a1cd021277f75e3c90daee
+    [[UMSocialManager defaultManager] setPlaform:UMSocialPlatformType_WechatSession appKey:@"wxb2ae31bd805f39e1" appSecret:@"83eb831ad6a1cd021277f75e3c90daee" redirectURL:@"http://mobile.umeng.com/social"];
 }
 
 @end

@@ -7,9 +7,7 @@
 //
 
 #import "TrailViewController.h"
-
 @import MapKit;
-
 #import "Trail_UpCell.h"
 #import "Trail_DownCell.h"
 
@@ -74,7 +72,9 @@ static NSString *downCellID = @"cellDown_Identifier";
     
     __block typeof(self) temp = self;
     self.block = ^(){
-        [temp.tableView reloadData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+           [temp.tableView reloadData];
+        });
     };
     
 }
@@ -88,8 +88,6 @@ static NSString *downCellID = @"cellDown_Identifier";
     NSString *specifiedDate = self.date;
     
     self.arrayMapInfo = [NSMutableArray arrayWithArray:[trailHelper filterMapInfoDataByDate:specifiedDate]];
-    
-    
 }
 
 #pragma mark - 禁止屏幕旋转
@@ -104,30 +102,27 @@ static NSString *downCellID = @"cellDown_Identifier";
 #pragma mark 添加一个HeaderView
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
-    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 80, 667)];
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 667)];
     
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    
+    [backButton setImage:nil forState:UIControlStateNormal];
     [backButton setTitle:@"返回" forState:UIControlStateNormal];
     [backButton setTitleColor:[UIColor colorWithRed:247 / 255.0 green:267 / 255.0 blue:202 / 255.0 alpha:1] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside];
     headerView.transform = CGAffineTransformMakeRotation(M_PI / 2);
-    backButton.frame = CGRectMake(10, 40, 50, 50);
+    backButton.frame = CGRectMake(0, 40, 100, 50);
+    CGPoint backButtonCenter = backButton.center;
+    backButtonCenter.x = headerView.center.x;
+    backButton.center = backButtonCenter;
     backButton.titleLabel.font = [UIFont systemFontOfSize:18];
     [headerView addSubview:backButton];
     
     //添加日期
     CGFloat lableY = tableView.center.y;
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0,lableY - 25, 40, 40)];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0,lableY - 25, 100, 100)];
     label.text = self.date;
     label.numberOfLines = 0;
     [headerView addSubview:label];
-    
-    UIButton *launchLocationServerButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 100, 40, 40)];
-    [launchLocationServerButton setImage:[UIImage imageNamed:@"gps"] forState:UIControlStateNormal];
-    launchLocationServerButton.userInteractionEnabled = YES;
-    [launchLocationServerButton addTarget:self action:@selector(launchLocationServerSetting) forControlEvents:UIControlEventTouchUpInside];
-    [headerView addSubview:launchLocationServerButton];
     
     return headerView;
 }
@@ -149,11 +144,6 @@ static NSString *downCellID = @"cellDown_Identifier";
         
     }
 }
-#pragma mark launchLocationServerSetting
-- (void)launchLocationServerSetting {
-    
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-}
 
 #pragma mark - 设置cell 的行数
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -167,7 +157,6 @@ static NSString *downCellID = @"cellDown_Identifier";
     if ((indexPath.row % 2) == 0) {
         Trail_UpCell *upCell = [tableView dequeueReusableCellWithIdentifier:upCellID forIndexPath:indexPath];
         
-        
         // cell 顺时针旋转90度
         upCell.contentView.transform = CGAffineTransformMakeRotation(M_PI/2);
         
@@ -177,11 +166,9 @@ static NSString *downCellID = @"cellDown_Identifier";
         //把数据填充到upCell上
         MapInfo *upMapInfo = self.arrayMapInfo[indexPath.row];
         
-        NSString *message = [NSString stringWithFormat:@"%@ -> %@",upMapInfo.time,upMapInfo.locationName];
+        NSString *message = [NSString stringWithFormat:@"%@ -> %@",upMapInfo.time,upMapInfo.locationName==nil?@"刚刚开小差了":upMapInfo.locationName];
         
         upCell.UPLabel.text = message;
-        
-        
         
         return upCell;
     }else{
@@ -215,10 +202,8 @@ static NSString *downCellID = @"cellDown_Identifier";
 
 #pragma mark - 给HeaderView一个宽度
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 50;
+    return 100;
 }
-
-
 
 #pragma mark 接收date的值
 -(void)setDate:(NSString *)date{
@@ -233,11 +218,6 @@ static NSString *downCellID = @"cellDown_Identifier";
         //数据加载完成，刷新tableView
         self.block();
     });
-    
 }
-
-
-
-
 
 @end
